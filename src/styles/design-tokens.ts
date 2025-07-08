@@ -266,11 +266,15 @@ export const designTokens = {
     30: '30',
     40: '40',
     50: '50',
-    modal: '1000',
     dropdown: '1000',
-    tooltip: '1030',
-    toast: '1040',
-    overlay: '1050'
+    sticky: '1020',
+    fixed: '1030',
+    header: '1040',
+    modal: '1050',
+    popover: '1060',
+    tooltip: '1070',
+    notification: '1080',
+    overlay: '1090'
   },
 
   // Breakpoints

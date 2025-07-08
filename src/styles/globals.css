@@ -170,3 +170,211 @@ body {
   --vscode-editor-background: var(--color-surface-primary) !important;
   --vscode-editor-foreground: var(--color-text-primary) !important;
 }
+
+/* Mobile-first responsive utilities */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .mobile-stack > * + * {
+    margin-top: 1rem;
+  }
+  
+  .mobile-full-width {
+    width: 100% !important;
+  }
+  
+  .mobile-text-center {
+    text-align: center !important;
+  }
+  
+  .mobile-hidden {
+    display: none !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet-stack > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  .tablet-grid-1 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .tablet-hidden {
+    display: none !important;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .touch-friendly {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem;
+  }
+  
+  .touch-spacing > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  /* Larger tap targets */
+  button, 
+  [role="button"], 
+  input[type="button"], 
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent zoom on input focus */
+  input, 
+  select, 
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break-before {
+    page-break-before: always;
+  }
+  
+  .print-break-after {
+    page-break-after: always;
+  }
+  
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: black;
+    page-break-after: avoid;
+  }
+  
+  p, li {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+  
+  pre, code {
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    font-family: 'Courier New', monospace;
+    font-size: 10pt;
+  }
+  
+  .monaco-editor {
+    border: 1px solid #ccc !important;
+    background: white !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-border-primary: #000000;
+    --color-text-primary: #000000;
+    --color-background-primary: #ffffff;
+  }
+  
+  [data-theme='dark'] {
+    --color-border-primary: #ffffff;
+    --color-text-primary: #ffffff;
+    --color-background-primary: #000000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-spin {
+    animation: none;
+  }
+  
+  .animate-fade-in,
+  .animate-slide-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+@media (prefers-reduced-motion: no-preference) {
+  *:focus-visible {
+    transition: outline-offset 0.2s ease;
+  }
+}
+
+/* Layout stability utilities */
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.content-visibility-auto {
+  content-visibility: auto;
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-scroll {
+  will-change: scroll-position;
+}
+
+.will-change-contents {
+  will-change: contents;
+}
+
+/* Container queries support */
+@container (max-width: 640px) {
+  .container-mobile-stack > * + * {
+    margin-top: 1rem;
+  }
+}
+
+@container (min-width: 641px) {
+  .container-desktop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+}

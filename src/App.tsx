@@ -3,7 +3,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import JsonValidator from './pages/JsonValidator';
 import JsonMinifier from './pages/JsonMinifier';
-import JwtDecoder from './pages/JwtDecoder';
+import JWTDecoder from './pages/JWTDecoder';
 import JasyptEncryption from './pages/JasyptEncryption';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/json-validator" element={<JsonValidator />} />
           <Route path="/json-minifier" element={<JsonMinifier />} />
-          <Route path="/jwt-decoder" element={<JwtDecoder />} />
+          <Route path="/jwt-decoder" element={<JWTDecoder />} />
           <Route path="/jasypt" element={<JasyptEncryption />} />
         </Routes>
       </Layout>

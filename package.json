@@ -7,7 +7,15 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "lint:fix": "eslint . --fix",
+    "type-check": "tsc --noEmit",
+    "preview": "vite preview",
+    "preview:build": "npm run build && npm run preview",
+    "analyze": "npm run build && npx vite-bundle-analyzer dist",
+    "lighthouse": "lhci autorun",
+    "clean": "rm -rf dist node_modules/.vite",
+    "deploy:netlify": "npm run build && netlify deploy --prod --dir=dist",
+    "deploy:vercel": "npm run build && vercel --prod"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
