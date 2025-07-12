@@ -323,12 +323,14 @@ const WelcomeCard: React.FC<WelcomeCardProps> = ({
   illustration
 }) => {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <AnimatedCard
-        animation="bounce"
-        shadow="xl"
-        className="w-full max-w-md mx-4 bg-white"
-      >
+    <div 
+      className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm" 
+      style={{ zIndex: 9999 }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="welcome-title"
+    >
+      <div className="relative overflow-hidden rounded-xl bg-white border border-gray-200 w-full max-w-md mx-4 shadow-xl transition-all duration-300 ease-out animate-scale-in">
         <div className="p-8 text-center">
           {illustration && (
             <div className="mb-6 flex justify-center">
@@ -336,7 +338,7 @@ const WelcomeCard: React.FC<WelcomeCardProps> = ({
             </div>
           )}
           
-          <h2 className="text-2xl font-bold text-text-primary mb-4">
+          <h2 id="welcome-title" className="text-2xl font-bold text-text-primary mb-4">
             {title}
           </h2>
           
@@ -366,7 +368,7 @@ const WelcomeCard: React.FC<WelcomeCardProps> = ({
             </Button>
           </div>
         </div>
-      </AnimatedCard>
+      </div>
     </div>
   );
 };

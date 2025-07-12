@@ -10,7 +10,6 @@ import {
   WelcomeCard,
   OnboardingTour,
   SecurityBadge,
-  TrustIndicator,
   Tooltip,
   HelpButton
 } from '../components/ui';
@@ -21,10 +20,9 @@ const Home: React.FC = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
-    const hasVisited = localStorage.getItem('devutils-visited');
-    if (!hasVisited) {
-      setShowWelcome(true);
-    }
+    // For debugging: force show welcome card (remove this line in production)
+    localStorage.removeItem('devutils-visited');
+    setShowWelcome(true);
   }, []);
 
   const handleGetStarted = () => {

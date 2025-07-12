@@ -113,6 +113,8 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
                           : 'btn-glass hover:shadow-glass'
                         }
                       `}
+                      aria-label={`Navigate to ${tool.name} tool`}
+                      aria-current={isActive ? 'page' : undefined}
                     >
                       <div className={`
                         p-2 rounded-md transition-colors
@@ -205,11 +207,17 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
             Quick Actions
           </h4>
           <div className="grid grid-cols-2 gap-2">
-            <button className="btn-glass flex items-center justify-center space-x-1 px-3 py-2 text-xs font-medium rounded-md transition-all">
+            <button 
+              className="btn-glass flex items-center justify-center space-x-1 px-3 py-2 text-xs font-medium rounded-md transition-all"
+              aria-label="Open help documentation"
+            >
               <Icons.Help size={12} />
               <span>Help</span>
             </button>
-            <button className="btn-glass flex items-center justify-center space-x-1 px-3 py-2 text-xs font-medium rounded-md transition-all">
+            <button 
+              className="btn-glass flex items-center justify-center space-x-1 px-3 py-2 text-xs font-medium rounded-md transition-all"
+              aria-label="Open application settings"
+            >
               <Icons.Settings size={12} />
               <span>Settings</span>
             </button>

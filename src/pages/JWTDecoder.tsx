@@ -5,7 +5,7 @@ import ToolSidebar from '../components/ToolSidebar';
 import StepIndicator from '../components/StepIndicator';
 import CopyButton from '../components/CopyButton';
 import FileUpload from '../components/FileUpload';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui';
+import { Card, CardHeader, CardTitle, CardContent, WelcomeState, ErrorState } from '../components/ui';
 import { JWTDecoder, type DecodedJWT, type JWTValidation, type SignatureVerificationResult } from '../utils/jwt';
 import { useDebounce } from '../hooks/useDebounce';
 
@@ -220,7 +220,7 @@ const JwtDecoder: React.FC = () => {
               </CardContent>
             </Card>
 
-            {decoded && validation && (
+            {decoded && validation ? (
               <>
                 {/* Header & Payload */}
                 <div className="grid lg:grid-cols-2 gap-6">
@@ -413,6 +413,21 @@ const JwtDecoder: React.FC = () => {
                   </CardContent>
                 </Card>
               </>
+            ) : !error ? (
+              <WelcomeState
+                icon="jwt"
+                title="JWT Token Analysis"
+                description="Paste a JWT token above to decode its header, payload, and verify its signature"
+                className="mt-6"
+              />
+            ) : (
+              <ErrorState
+                title="Invalid JWT Token"
+                description={error}
+                actionLabel="Try Sample JWT"
+                onAction={() => handleInputChange('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c')}
+                className="mt-6"
+              />
             )}
           </div>
         </div>

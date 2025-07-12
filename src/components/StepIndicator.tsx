@@ -123,7 +123,14 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({
 
   if (orientation === 'vertical') {
     return (
-      <div className={`flex flex-col ${className}`}>
+      <div 
+        className={`flex flex-col ${className}`}
+        role="progressbar"
+        aria-label="Progress through tool workflow"
+        aria-valuenow={currentIndex + 1}
+        aria-valuemin={1}
+        aria-valuemax={steps.length}
+      >
         {steps.map((step, index) => {
           const colors = getStepColors(step, index);
           const isLast = index === steps.length - 1;

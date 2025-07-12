@@ -6,7 +6,7 @@ import StepIndicator from '../components/StepIndicator';
 import CopyButton from '../components/CopyButton';
 import FileUpload from '../components/FileUpload';
 import URLInput from '../components/URLInput';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui';
+import { Card, CardHeader, CardTitle, CardContent, WelcomeState } from '../components/ui';
 
 interface MinifyResult {
   isValid: boolean;
@@ -254,22 +254,31 @@ const JsonMinifier: React.FC = () => {
                   </div>
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col">
-                  <div className="flex-1 border border-border-primary rounded-lg overflow-hidden">
-                    <Editor
-                      height="400px"
-                      language="json"
-                      value={result.minified || ''}
-                      options={{
-                        readOnly: true,
-                        minimap: { enabled: false },
-                        scrollBeyondLastLine: false,
-                        fontSize: 14,
-                        wordWrap: 'on',
-                        automaticLayout: true,
-                      }}
-                      theme="vs-light"
+                  {result.minified ? (
+                    <div className="flex-1 border border-border-primary rounded-lg overflow-hidden">
+                      <Editor
+                        height="400px"
+                        language="json"
+                        value={result.minified}
+                        options={{
+                          readOnly: true,
+                          minimap: { enabled: false },
+                          scrollBeyondLastLine: false,
+                          fontSize: 14,
+                          wordWrap: 'on',
+                          automaticLayout: true,
+                        }}
+                        theme="vs-light"
+                      />
+                    </div>
+                  ) : (
+                    <WelcomeState
+                      icon="compress"
+                      title="Ready to Minify"
+                      description="Enter JSON on the left to see the compressed version here with size savings"
+                      className="flex-1 min-h-[400px]"
                     />
-                  </div>
+                  )}
                 </CardContent>
               </Card>
             </div>
