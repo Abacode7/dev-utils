@@ -254,7 +254,7 @@ export class JasyptEncryption {
       );
 
       return new TextDecoder().decode(decrypted);
-    } catch (error) {
+    } catch {
       throw new Error('Invalid encrypted data or wrong password');
     }
   }
@@ -351,7 +351,7 @@ export class JasyptEncryption {
       );
 
       return new TextDecoder().decode(decrypted);
-    } catch (error) {
+    } catch {
       throw new Error('Invalid encrypted data or wrong password');
     }
   }

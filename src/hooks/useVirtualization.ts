@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback, useEffect, useRef } from 'react';
+import { useMemo, useState, useCallback, useRef } from 'react';
 
 interface VirtualizationConfig {
   itemHeight: number;
@@ -114,7 +114,6 @@ export const useDynamicVirtualization = <T>(
   const [itemHeights, setItemHeights] = useState<Map<number, number>>(new Map());
   const [scrollTop, setScrollTop] = useState(0);
   const scrollElementRef = useRef<HTMLDivElement>(null);
-  const measurementCache = useRef<Map<number, number>>(new Map());
 
   const getItemHeight = useCallback((index: number) => {
     return itemHeights.get(index) ?? estimatedItemHeight;

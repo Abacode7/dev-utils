@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui';
+import { Card, CardHeader, CardTitle, CardDescription } from '../components/ui';
 import { Icons } from '../styles/icons';
 
 const Home: React.FC = () => {

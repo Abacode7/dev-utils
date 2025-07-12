@@ -332,7 +332,7 @@ export const generateCSSVariables = (tokens: typeof designTokens, isDark = false
   Object.entries(theme.colors).forEach(([category, colors]) => {
     if (typeof colors === 'object') {
       Object.entries(colors).forEach(([key, value]) => {
-        cssVars[`--color-${category}-${key}`] = value;
+        cssVars[`--color-${category}-${key}`] = value as string;
       });
     }
   });

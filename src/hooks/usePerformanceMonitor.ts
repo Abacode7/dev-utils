@@ -107,7 +107,7 @@ export const useOperationPerformance = () => {
 
 // Memory usage monitoring
 export const useMemoryMonitor = (interval = 5000) => {
-  const [memoryInfo, setMemoryInfo] = useState<MemoryInfo | null>(null);
+  const [memoryInfo, setMemoryInfo] = useState<any | null>(null);
 
   useEffect(() => {
     if (!('memory' in performance)) return;
@@ -141,7 +141,6 @@ export const useBundleAnalyzer = () => {
 
   useEffect(() => {
     // Estimate module sizes based on performance entries
-    const entries = performance.getEntriesByType('navigation');
     const resourceEntries = performance.getEntriesByType('resource');
 
     const sizes: Record<string, number> = {};

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, AlertTitle, AlertDescription } from './ui';
 import { Icons } from '../styles/icons';
-import { AppError } from '../hooks/useErrorHandler';
+import type { AppError } from '../hooks/useErrorHandler';
 import { Button } from './ui';
 
 interface ErrorNotificationProps {

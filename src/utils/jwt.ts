@@ -57,7 +57,7 @@ export class JWTDecoder {
     
     try {
       return atob(base64);
-    } catch (error) {
+    } catch {
       throw new Error('Invalid base64url encoding');
     }
   }

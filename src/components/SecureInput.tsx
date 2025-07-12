@@ -50,7 +50,7 @@ const SecureInput: React.FC<SecureInputProps> = ({
           style={{ 
             fontFamily: isVisible ? 'ui-monospace, monospace' : 'text-security-disc, monospace',
             WebkitTextSecurity: isVisible ? 'none' : 'disc'
-          }}
+          } as React.CSSProperties}
         />
         
         <div className="absolute inset-y-0 right-0 flex items-center space-x-1 pr-2">
