@@ -2,19 +2,19 @@
 export const designTokens = {
   // Color Palette with Semantic Tokens
   colors: {
-    // Primary Brand Colors
+    // Primary Brand Colors - Deep Enterprise Blues
     primary: {
       50: '#eff6ff',
       100: '#dbeafe', 
       200: '#bfdbfe',
       300: '#93c5fd',
       400: '#60a5fa',
-      500: '#3b82f6', // Main brand
-      600: '#2563eb',
-      700: '#1d4ed8',
-      800: '#1e40af',
-      900: '#1e3a8a',
-      950: '#172554'
+      500: '#2563eb', // Main enterprise blue
+      600: '#1d4ed8',
+      700: '#1e40af',
+      800: '#1e3a8a',
+      900: '#172554',
+      950: '#0f1629'
     },
     
     // Secondary Accent Colors
@@ -219,7 +219,7 @@ export const designTokens = {
     full: '9999px'
   },
 
-  // Shadows
+  // Shadows with Elevation Hierarchy
   boxShadow: {
     sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
     DEFAULT: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
@@ -229,9 +229,22 @@ export const designTokens = {
     '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
     inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
     none: 'none',
-    // Glassmorphism shadows
+    // Enterprise Glassmorphism Effects
     glass: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-    glow: '0 0 20px 0 rgba(59, 130, 246, 0.5)'
+    glassLg: '0 16px 40px 0 rgba(31, 38, 135, 0.4)',
+    glassXl: '0 24px 48px 0 rgba(31, 38, 135, 0.45)',
+    // Brand Glow Effects
+    glow: '0 0 20px 0 rgba(37, 99, 235, 0.5)',
+    glowLg: '0 0 40px 0 rgba(37, 99, 235, 0.4)',
+    glowSuccess: '0 0 20px 0 rgba(34, 197, 94, 0.5)',
+    glowWarning: '0 0 20px 0 rgba(245, 158, 11, 0.5)',
+    glowError: '0 0 20px 0 rgba(239, 68, 68, 0.5)',
+    // Elevation System
+    elevation1: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    elevation2: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    elevation3: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    elevation4: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    elevation5: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
   },
 
   // Animation & Transitions

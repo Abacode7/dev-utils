@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/cn';
 
@@ -149,19 +149,7 @@ const FloatingTextarea = React.forwardRef<HTMLTextAreaElement, FloatingTextareaP
       else if (ref) ref.current = node;
     };
 
-    useEffect(() => {
-      if (textareaRef.current) {
-        const value = textareaRef.current.value;
-        setHasValue(!!value);
-        setCharCount(value.length);
-        
-        if (autoResize) {
-          autoResizeTextarea();
-        }
-      }
-    }, [props.value, props.defaultValue, autoResize]);
-
-    const autoResizeTextarea = () => {
+    const autoResizeTextarea = useCallback(() => {
       if (!textareaRef.current || !autoResize) return;
       
       const textarea = textareaRef.current;
@@ -178,7 +166,19 @@ const FloatingTextarea = React.forwardRef<HTMLTextAreaElement, FloatingTextareaP
       
       const newHeight = Math.max(minHeight, Math.min(maxHeight, scrollHeight));
       textarea.style.height = `${newHeight}px`;
-    };
+    }, [autoResize, minRows, maxRows]);
+
+    useEffect(() => {
+      if (textareaRef.current) {
+        const value = textareaRef.current.value;
+        setHasValue(!!value);
+        setCharCount(value.length);
+        
+        if (autoResize) {
+          autoResizeTextarea();
+        }
+      }
+    }, [props.value, props.defaultValue, autoResize, autoResizeTextarea]);
 
     const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
       setIsFocused(true);

@@ -55,16 +55,18 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({
   };
 
   const getStepIcon = (step: Step, index: number) => {
+    const iconProps = { size: sizeClasses[size].icon };
+    
     switch (step.status) {
       case 'completed':
-        return <Icons.Check size={sizeClasses[size].icon} className="text-white" />;
+        return <Icons.Check {...iconProps} className="text-white animate-scale-in" />;
       case 'error':
-        return <Icons.X size={sizeClasses[size].icon} className="text-white" />;
+        return <Icons.X {...iconProps} className="text-white animate-bounce-in" />;
       case 'current':
-        return <Icons.Play size={sizeClasses[size].icon} className="text-white" />;
+        return <Icons.Play {...iconProps} className="text-white animate-glow-pulse" />;
       default:
         return (
-          <span className="text-text-tertiary font-medium">
+          <span className="text-text-tertiary font-medium transition-colors duration-200">
             {index + 1}
           </span>
         );
@@ -85,7 +87,7 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({
         };
       case 'current':
         return {
-          circle: 'bg-primary-500 border-primary-500 ring-4 ring-primary-100',
+          circle: 'bg-primary-500 border-primary-500 ring-4 ring-primary-100 animate-glow-pulse',
           title: 'text-primary-600 font-semibold',
           description: 'text-text-secondary',
           connector: 'bg-border-primary',

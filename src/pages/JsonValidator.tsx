@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Editor from '@monaco-editor/react';
 import TwoColumnLayout from '../components/TwoColumnLayout';
 import ToolSidebar from '../components/ToolSidebar';
@@ -50,7 +50,7 @@ const JsonValidator: React.FC = () => {
     },
   ];
 
-  const validateAndFormat = (jsonString: string) => {
+  const validateAndFormat = useCallback((jsonString: string) => {
     try {
       const parsed = JSON.parse(jsonString);
       const indentChar = indentType === 'tabs' ? '\t' : ' '.repeat(indentSize);
@@ -62,7 +62,7 @@ const JsonValidator: React.FC = () => {
         error: error instanceof Error ? error.message : 'Invalid JSON'
       });
     }
-  };
+  }, [indentType, indentSize]);
 
   useEffect(() => {
     if (debouncedInput.trim()) {
@@ -70,7 +70,7 @@ const JsonValidator: React.FC = () => {
     } else {
       setValidation({ isValid: true });
     }
-  }, [debouncedInput, indentSize, indentType]);
+  }, [debouncedInput, indentSize, indentType, validateAndFormat]);
 
   const handleInputChange = (value: string | undefined) => {
     const newValue = value || '';

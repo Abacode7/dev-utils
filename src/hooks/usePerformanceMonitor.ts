@@ -107,13 +107,13 @@ export const useOperationPerformance = () => {
 
 // Memory usage monitoring
 export const useMemoryMonitor = (interval = 5000) => {
-  const [memoryInfo, setMemoryInfo] = useState<any | null>(null);
+  const [memoryInfo, setMemoryInfo] = useState<Record<string, unknown> | null>(null);
 
   useEffect(() => {
     if (!('memory' in performance)) return;
 
     const updateMemoryInfo = () => {
-      const memory = (performance as any).memory;
+      const memory = (performance as unknown as Record<string, unknown>).memory as Record<string, number>;
       setMemoryInfo(memory);
 
       // Log memory warnings

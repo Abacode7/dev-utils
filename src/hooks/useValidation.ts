@@ -1,12 +1,12 @@
 import { useState, useCallback } from 'react';
 
-export type ValidationRule<T = any> = {
+export type ValidationRule<T = unknown> = {
   validator: (value: T) => boolean | Promise<boolean>;
   message: string;
   level?: 'error' | 'warning';
 };
 
-export type ValidationSchema<T = Record<string, any>> = {
+export type ValidationSchema<T = Record<string, unknown>> = {
   [K in keyof T]?: ValidationRule<T[K]>[];
 };
 
@@ -14,7 +14,7 @@ export type ValidationErrors<T> = {
   [K in keyof T]?: string[];
 };
 
-export const useValidation = <T extends Record<string, any>>(
+export const useValidation = <T extends Record<string, unknown>>(
   schema: ValidationSchema<T>
 ) => {
   const [errors, setErrors] = useState<ValidationErrors<T>>({});

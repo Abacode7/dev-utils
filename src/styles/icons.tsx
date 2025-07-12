@@ -31,13 +31,16 @@ const Icon: React.FC<IconProps & { children: React.ReactNode }> = ({
   </svg>
 );
 
-// JSON-related icons
+// Professional Tool Icons
 export const JsonIcon: React.FC<IconProps> = (props) => (
   <Icon {...props} aria-label="JSON">
-    <path d="M5 12s2.545-5 7-5c4.454 0 7 5 7 5s-2.546 5-7 5c-4.455 0-7-5-7-5z" />
-    <path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-    <path d="M21 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2" />
-    <path d="M21 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2" />
+    <path d="M4 7v10c0 2.21 1.79 4 4 4h8c2.21 0 4-1.79 4-4V7c0-2.21-1.79-4-4-4H8c-2.21 0-4 1.79-4 4z" />
+    <path d="M9 9h6" />
+    <path d="M9 12h4" />
+    <path d="M9 15h6" />
+    <circle cx="7" cy="9" r="1" />
+    <circle cx="7" cy="12" r="1" />
+    <circle cx="7" cy="15" r="1" />
   </Icon>
 );
 
@@ -232,6 +235,61 @@ export const HelpIcon: React.FC<IconProps> = (props) => (
   </Icon>
 );
 
+// Professional Brand Icons
+export const BrandIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Brand">
+    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+    <path d="M2 17l10 5 10-5" />
+    <path d="M2 12l10 5 10-5" />
+    <circle cx="12" cy="12" r="3" fill="currentColor" />
+  </Icon>
+);
+
+export const EnterpriseIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Enterprise">
+    <rect x="4" y="2" width="16" height="20" rx="2" />
+    <path d="M9 22v-4h6v4" />
+    <path d="M8 6h.01" />
+    <path d="M16 6h.01" />
+    <path d="M12 6h.01" />
+    <path d="M12 10h.01" />
+    <path d="M12 14h.01" />
+    <path d="M16 10h.01" />
+    <path d="M16 14h.01" />
+    <path d="M8 10h.01" />
+    <path d="M8 14h.01" />
+  </Icon>
+);
+
+export const SecurityIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Security">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="M9 12l2 2 4-4" />
+  </Icon>
+);
+
+export const PerformanceIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Performance">
+    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+  </Icon>
+);
+
+export const QualityIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Quality">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+  </Icon>
+);
+
+export const AnalyticsIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Analytics">
+    <path d="M3 3v18h18" />
+    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
+    <circle cx="7" cy="14" r="1" />
+    <circle cx="11" cy="11" r="1" />
+    <circle cx="16" cy="6" r="1" />
+  </Icon>
+);
+
 // Export all icons for easy access
 export const Icons = {
   // JSON tools
@@ -266,6 +324,14 @@ export const Icons = {
   Menu: MenuIcon,
   Play: PlayIcon,
   Help: HelpIcon,
+  
+  // Professional Brand
+  Brand: BrandIcon,
+  Enterprise: EnterpriseIcon,
+  Security: SecurityIcon,
+  Performance: PerformanceIcon,
+  Quality: QualityIcon,
+  Analytics: AnalyticsIcon,
 } as const;
 
 export type IconName = keyof typeof Icons;

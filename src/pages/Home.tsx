@@ -1,6 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardHeader, CardTitle, CardDescription } from '../components/ui';
+import { 
+  CardHeader, 
+  CardTitle, 
+  CardDescription,
+  AnimatedCard,
+  Heading,
+  Text,
+  StatusMessage
+} from '../components/ui';
 import { Icons } from '../styles/icons';
 
 const Home: React.FC = () => {
@@ -37,13 +45,29 @@ const Home: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-text-primary mb-4 font-display">
+      <div className="text-center mb-12 space-y-6">
+        <Heading 
+          size="h1" 
+          gradient="enterprise"
+          className="animate-fade-in"
+        >
           Developer Utilities
-        </h1>
-        <p className="text-lg text-text-secondary">
-          Essential tools for developers - JSON validation, JWT decoding, and more
-        </p>
+        </Heading>
+        <Text 
+          size="lg" 
+          color="secondary" 
+          className="animate-slide-in"
+        >
+          Enterprise-grade tools for developers - JSON validation, JWT decoding, and secure encryption
+        </Text>
+        
+        <StatusMessage 
+          variant="info" 
+          className="max-w-xl mx-auto animate-bounce-in"
+          icon={<Icons.Enterprise className="w-5 h-5" />}
+        >
+          <strong>Production Ready:</strong> Professional UI with glassmorphism effects and smooth animations.
+        </StatusMessage>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -53,23 +77,31 @@ const Home: React.FC = () => {
             <Link
               key={tool.path}
               to={tool.path}
-              className="block transition-all duration-200 hover:scale-105"
+              className="block"
             >
-              <Card className="h-full hover:shadow-lg transition-shadow duration-200 border-border-primary hover:border-primary-200">
+              <AnimatedCard 
+                className="h-full border-border-primary hover:border-primary-200"
+                animation="hover"
+                shadow="lg"
+                withRipple
+              >
                 <CardHeader>
                   <div className="flex items-center space-x-3">
-                    <div className={`${tool.color} p-2 rounded-lg bg-surface-secondary`}>
+                    <div className={`${tool.color} p-3 rounded-xl bg-gradient-to-br from-surface-secondary to-surface-tertiary shadow-elevation1`}>
                       <IconComponent size={24} />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-lg">{tool.name}</CardTitle>
-                      <CardDescription className="mt-1">
+                      <CardTitle className="text-lg font-semibold">{tool.name}</CardTitle>
+                      <CardDescription className="mt-1 text-text-tertiary">
                         {tool.description}
                       </CardDescription>
                     </div>
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      <Icons.Play size={16} className="text-primary-500" />
+                    </div>
                   </div>
                 </CardHeader>
-              </Card>
+              </AnimatedCard>
             </Link>
           );
         })}
