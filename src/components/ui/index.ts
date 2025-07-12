@@ -15,3 +15,9 @@ export { Label } from './Label';
 export type { LabelProps } from './Label';
 
 export { Alert, AlertTitle, AlertDescription } from './Alert';
+
+export { FloatingInput } from './FloatingInput';
+export type { FloatingInputProps } from './FloatingInput';
+
+export { FloatingTextarea } from './FloatingTextarea';
+export type { FloatingTextareaProps } from './FloatingTextarea';

@@ -218,6 +218,20 @@ export const MenuIcon: React.FC<IconProps> = (props) => (
   </Icon>
 );
 
+export const PlayIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Play">
+    <polygon points="5,3 19,12 5,21" />
+  </Icon>
+);
+
+export const HelpIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Help">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+    <line x1="12" y1="17" x2="12.01" y2="17" />
+  </Icon>
+);
+
 // Export all icons for easy access
 export const Icons = {
   // JSON tools
@@ -250,6 +264,8 @@ export const Icons = {
   Sun: SunIcon,
   Home: HomeIcon,
   Menu: MenuIcon,
+  Play: PlayIcon,
+  Help: HelpIcon,
 } as const;
 
 export type IconName = keyof typeof Icons;
