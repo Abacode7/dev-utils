@@ -20,8 +20,8 @@ const Header: React.FC = () => {
 
   return (
     <header className="bg-surface-primary border-b border-border-primary shadow-sm sticky top-0 z-header">
-      <div className="container mx-auto">
-        <div className="flex items-center justify-between p-4">
+      <div className="w-full px-8 sm:px-12 md:px-16 lg:px-24">
+        <div className="flex items-center justify-between py-4">
           <Link 
             to="/" 
             className="flex items-center space-x-2 text-xl font-bold text-primary-600 hover:text-primary-700 transition-colors font-display"
@@ -67,7 +67,7 @@ const Header: React.FC = () => {
         {/* Mobile Navigation */}
         {isMobile && isMobileMenuOpen && (
           <div className="md:hidden border-t border-border-primary bg-surface-secondary">
-            <nav className="p-4 space-y-2">
+            <nav className="px-8 sm:px-12 md:px-16 lg:px-24 py-4 space-y-2">
               {navigationItems.map((item) => (
                 <Link
                   key={item.path}

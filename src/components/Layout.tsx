@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="min-h-screen bg-background-primary">
       <Header />
       <ErrorBoundary>
-        <main className="container mx-auto px-4 py-8">
+        <main className="w-full px-8 sm:px-12 md:px-16 lg:px-24 py-12">
           {children}
         </main>
       </ErrorBoundary>
