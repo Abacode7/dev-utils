@@ -31,13 +31,16 @@ const Icon: React.FC<IconProps & { children: React.ReactNode }> = ({
   </svg>
 );
 
-// JSON-related icons
+// Professional Tool Icons
 export const JsonIcon: React.FC<IconProps> = (props) => (
   <Icon {...props} aria-label="JSON">
-    <path d="M5 12s2.545-5 7-5c4.454 0 7 5 7 5s-2.546 5-7 5c-4.455 0-7-5-7-5z" />
-    <path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-    <path d="M21 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2" />
-    <path d="M21 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2" />
+    <path d="M4 7v10c0 2.21 1.79 4 4 4h8c2.21 0 4-1.79 4-4V7c0-2.21-1.79-4-4-4H8c-2.21 0-4 1.79-4 4z" />
+    <path d="M9 9h6" />
+    <path d="M9 12h4" />
+    <path d="M9 15h6" />
+    <circle cx="7" cy="9" r="1" />
+    <circle cx="7" cy="12" r="1" />
+    <circle cx="7" cy="15" r="1" />
   </Icon>
 );
 
@@ -218,6 +221,120 @@ export const MenuIcon: React.FC<IconProps> = (props) => (
   </Icon>
 );
 
+export const PlayIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Play">
+    <polygon points="5,3 19,12 5,21" />
+  </Icon>
+);
+
+export const HelpIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Help">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+    <line x1="12" y1="17" x2="12.01" y2="17" />
+  </Icon>
+);
+
+// Professional Brand Icons
+export const BrandIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Brand">
+    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+    <path d="M2 17l10 5 10-5" />
+    <path d="M2 12l10 5 10-5" />
+    <circle cx="12" cy="12" r="3" fill="currentColor" />
+  </Icon>
+);
+
+export const EnterpriseIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Enterprise">
+    <rect x="4" y="2" width="16" height="20" rx="2" />
+    <path d="M9 22v-4h6v4" />
+    <path d="M8 6h.01" />
+    <path d="M16 6h.01" />
+    <path d="M12 6h.01" />
+    <path d="M12 10h.01" />
+    <path d="M12 14h.01" />
+    <path d="M16 10h.01" />
+    <path d="M16 14h.01" />
+    <path d="M8 10h.01" />
+    <path d="M8 14h.01" />
+  </Icon>
+);
+
+export const SecurityIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Security">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="M9 12l2 2 4-4" />
+  </Icon>
+);
+
+export const PerformanceIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Performance">
+    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+  </Icon>
+);
+
+export const QualityIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Quality">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+  </Icon>
+);
+
+export const AnalyticsIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Analytics">
+    <path d="M3 3v18h18" />
+    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
+    <circle cx="7" cy="14" r="1" />
+    <circle cx="11" cy="11" r="1" />
+    <circle cx="16" cy="6" r="1" />
+  </Icon>
+);
+
+// Additional icons needed for components
+export const LoadingIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Loading">
+    <circle cx="12" cy="12" r="10" strokeDasharray="32" strokeDashoffset="32" className="animate-spin" />
+  </Icon>
+);
+
+export const SearchIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Search">
+    <circle cx="11" cy="11" r="8" />
+    <path d="M21 21l-4.35-4.35" />
+  </Icon>
+);
+
+export const ErrorIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Error">
+    <circle cx="12" cy="12" r="10" />
+    <line x1="15" y1="9" x2="9" y2="15" />
+    <line x1="9" y1="9" x2="15" y2="15" />
+  </Icon>
+);
+
+export const WarningIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Warning">
+    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+    <line x1="12" y1="9" x2="12" y2="13" />
+    <line x1="12" y1="17" x2="12.01" y2="17" />
+  </Icon>
+);
+
+export const GlobeIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Globe">
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </Icon>
+);
+
+export const LockIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Lock">
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </Icon>
+);
+
 // Export all icons for easy access
 export const Icons = {
   // JSON tools
@@ -250,6 +367,25 @@ export const Icons = {
   Sun: SunIcon,
   Home: HomeIcon,
   Menu: MenuIcon,
+  Play: PlayIcon,
+  Help: HelpIcon,
+  
+  // Professional Brand
+  Brand: BrandIcon,
+  Enterprise: EnterpriseIcon,
+  Security: SecurityIcon,
+  Performance: PerformanceIcon,
+  Quality: QualityIcon,
+  Analytics: AnalyticsIcon,
+  
+  // Additional UI Icons
+  Loading: LoadingIcon,
+  Search: SearchIcon,
+  Error: ErrorIcon,
+  Warning: WarningIcon,
+  Globe: GlobeIcon,
+  Lock: LockIcon,
+  FileIcon: FileIcon,
 } as const;
 
 export type IconName = keyof typeof Icons;

@@ -2,7 +2,7 @@ export interface JWTHeader {
   alg: string;
   typ: string;
   kid?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface JWTPayload {
@@ -13,7 +13,7 @@ export interface JWTPayload {
   nbf?: number;
   iat?: number;
   jti?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface DecodedJWT {

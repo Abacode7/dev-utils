@@ -3,7 +3,7 @@ import LoadingSpinner from './LoadingSpinner';
 import ErrorBoundary from './ErrorBoundary';
 
 interface LazyRouteProps {
-  component: React.LazyExoticComponent<React.ComponentType<any>>;
+  component: React.LazyExoticComponent<React.ComponentType<unknown>>;
   fallback?: React.ReactNode;
   errorFallback?: React.ReactNode;
 }

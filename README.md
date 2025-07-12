@@ -207,11 +207,11 @@ npm run analyze
 
 MIT License - see LICENSE file for details
 
-## 🔗 Links
+<!-- ## 🔗 Links
 
 - [Netlify Deployment](https://dev-utils.netlify.app)
 - [Vercel Deployment](https://dev-utils.vercel.app)
-- [GitHub Repository](https://github.com/username/dev-utils)
+- [GitHub Repository](https://github.com/username/dev-utils) -->
 
 ---
 

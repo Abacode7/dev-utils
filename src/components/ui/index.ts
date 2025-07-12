@@ -15,3 +15,80 @@ export { Label } from './Label';
 export type { LabelProps } from './Label';
 
 export { Alert, AlertTitle, AlertDescription } from './Alert';
+
+export { FloatingInput } from './FloatingInput';
+export type { FloatingInputProps } from './FloatingInput';
+
+export { FloatingTextarea } from './FloatingTextarea';
+export type { FloatingTextareaProps } from './FloatingTextarea';
+
+// Enterprise UI Components
+export { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassCardFooter } from './GlassCard';
+export type { GlassCardProps } from './GlassCard';
+
+export { AnimatedCard, LoadingCard, InteractiveCard } from './AnimatedCard';
+export type { AnimatedCardProps, LoadingCardProps, InteractiveCardProps } from './AnimatedCard';
+
+export { Heading, Text, Code, Muted, Lead, Large, Small } from './Typography';
+export type { HeadingProps, TextProps, CodeProps } from './Typography';
+
+export { 
+  StatusMessage, 
+  SuccessMessage, 
+  ErrorMessage, 
+  WarningMessage, 
+  InfoMessage, 
+  Toast, 
+  ProgressStatus 
+} from './StatusMessage';
+export type { StatusMessageProps, ToastProps, ProgressStatusProps } from './StatusMessage';
+
+// Advanced UX Components - Stage 6 Phase 3
+export { 
+  ProgressiveDisclosure, 
+  AdvancedOptions, 
+  CollapsibleSection, 
+  FeatureToggle,
+  disclosureVariants,
+  triggerVariants 
+} from './ProgressiveDisclosure';
+export type { ProgressiveDisclosureProps, AdvancedOptionsProps, CollapsibleSectionProps, FeatureToggleProps } from './ProgressiveDisclosure';
+
+export { 
+  OnboardingTour, 
+  Tooltip, 
+  WelcomeCard, 
+  HelpButton,
+  tooltipVariants 
+} from './Onboarding';
+export type { OnboardingTourProps, OnboardingStep, TooltipProps, WelcomeCardProps, HelpButtonProps } from './Onboarding';
+
+export { 
+  EmptyState, 
+  NoDataState, 
+  NoResultsState, 
+  ErrorState, 
+  LoadingState, 
+  WelcomeState, 
+  WorkflowStepState,
+  emptyStateVariants 
+} from './EmptyState';
+export type { EmptyStateProps } from './EmptyState';
+
+export { 
+  SecurityBadge, 
+  TrustIndicator, 
+  VerificationStatus, 
+  SecurityNotice, 
+  PrivacyIndicator, 
+  ComplianceBadge,
+  securityBadgeVariants 
+} from './TrustElements';
+export type { 
+  SecurityBadgeProps, 
+  TrustIndicatorProps, 
+  VerificationStatusProps, 
+  SecurityNoticeProps, 
+  PrivacyIndicatorProps, 
+  ComplianceBadgeProps 
+} from './TrustElements';
