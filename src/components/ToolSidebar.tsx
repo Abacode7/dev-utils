@@ -88,13 +88,13 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
   const currentToolInfo = getCurrentTool();
 
   return (
-    <div className={`h-full flex flex-col ${className}`}>
+    <div className={`h-full flex flex-col glass-card shadow-glass ${className}`}>
       {/* Tool Navigation */}
       <div className="flex-1 p-6">
         <div className="space-y-6">
           {Object.entries(groupedTools).map(([category, categoryTools]) => (
-            <div key={category}>
-              <h3 className="text-sm font-semibold text-text-tertiary uppercase tracking-wider mb-3 font-display">
+            <div key={category} className="animate-slide-in">
+              <h3 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-3 font-display text-gradient-enterprise">
                 {category}
               </h3>
               <div className="space-y-2">
@@ -107,10 +107,10 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
                       key={tool.path}
                       to={tool.path}
                       className={`
-                        group flex items-start space-x-3 p-3 rounded-lg transition-all duration-200
+                        group flex items-start space-x-3 p-3 rounded-lg transition-all duration-200 glass-elevated
                         ${isActive 
-                          ? 'bg-primary-50 border border-primary-200 shadow-sm' 
-                          : 'hover:bg-surface-primary border border-transparent hover:border-border-primary'
+                          ? 'btn-enterprise shadow-glow animate-glow-pulse' 
+                          : 'btn-glass hover:shadow-glass'
                         }
                       `}
                     >
@@ -126,8 +126,8 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center space-x-2">
                           <h4 className={`
-                            text-sm font-medium truncate
-                            ${isActive ? 'text-primary-700' : 'text-text-primary group-hover:text-primary-600'}
+                            text-sm font-bold truncate font-display
+                            ${isActive ? 'text-white' : 'text-text-primary group-hover:text-primary-600'}
                           `}>
                             {tool.name}
                           </h4>
@@ -153,14 +153,14 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
 
       {/* Current Tool Context */}
       {currentToolInfo && (
-        <div className="border-t border-border-primary p-6 bg-surface-primary">
+        <div className="border-t border-border-primary p-6 glass-elevated animate-slide-in">
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-primary-100 text-primary-600 rounded-md">
-                <currentToolInfo.icon size={20} />
+              <div className="p-2 btn-enterprise rounded-md shadow-glow">
+                <currentToolInfo.icon size={20} className="text-white" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-text-primary font-display">
+                <h3 className="text-sm font-bold text-text-primary font-display">
                   {currentToolInfo.name}
                 </h3>
                 <p className="text-xs text-text-tertiary">
@@ -199,17 +199,17 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
       )}
 
       {/* Quick Actions */}
-      <div className="border-t border-border-primary p-6 bg-surface-secondary">
-        <div className="space-y-3">
-          <h4 className="text-xs font-medium text-text-secondary uppercase tracking-wider">
+      <div className="border-t border-border-primary p-6 glass-card">
+        <div className="space-y-3 animate-slide-in">
+          <h4 className="text-xs font-bold text-text-primary uppercase tracking-wider font-display">
             Quick Actions
           </h4>
           <div className="grid grid-cols-2 gap-2">
-            <button className="flex items-center justify-center space-x-1 px-3 py-2 text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-surface-primary rounded-md transition-colors border border-border-primary hover:border-border-secondary">
+            <button className="btn-glass flex items-center justify-center space-x-1 px-3 py-2 text-xs font-medium rounded-md transition-all">
               <Icons.Help size={12} />
               <span>Help</span>
             </button>
-            <button className="flex items-center justify-center space-x-1 px-3 py-2 text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-surface-primary rounded-md transition-colors border border-border-primary hover:border-border-secondary">
+            <button className="btn-glass flex items-center justify-center space-x-1 px-3 py-2 text-xs font-medium rounded-md transition-all">
               <Icons.Settings size={12} />
               <span>Settings</span>
             </button>

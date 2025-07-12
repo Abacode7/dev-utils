@@ -290,6 +290,51 @@ export const AnalyticsIcon: React.FC<IconProps> = (props) => (
   </Icon>
 );
 
+// Additional icons needed for components
+export const LoadingIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Loading">
+    <circle cx="12" cy="12" r="10" strokeDasharray="32" strokeDashoffset="32" className="animate-spin" />
+  </Icon>
+);
+
+export const SearchIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Search">
+    <circle cx="11" cy="11" r="8" />
+    <path d="M21 21l-4.35-4.35" />
+  </Icon>
+);
+
+export const ErrorIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Error">
+    <circle cx="12" cy="12" r="10" />
+    <line x1="15" y1="9" x2="9" y2="15" />
+    <line x1="9" y1="9" x2="15" y2="15" />
+  </Icon>
+);
+
+export const WarningIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Warning">
+    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+    <line x1="12" y1="9" x2="12" y2="13" />
+    <line x1="12" y1="17" x2="12.01" y2="17" />
+  </Icon>
+);
+
+export const GlobeIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Globe">
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </Icon>
+);
+
+export const LockIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Lock">
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </Icon>
+);
+
 // Export all icons for easy access
 export const Icons = {
   // JSON tools
@@ -332,6 +377,15 @@ export const Icons = {
   Performance: PerformanceIcon,
   Quality: QualityIcon,
   Analytics: AnalyticsIcon,
+  
+  // Additional UI Icons
+  Loading: LoadingIcon,
+  Search: SearchIcon,
+  Error: ErrorIcon,
+  Warning: WarningIcon,
+  Globe: GlobeIcon,
+  Lock: LockIcon,
+  FileIcon: FileIcon,
 } as const;
 
 export type IconName = keyof typeof Icons;

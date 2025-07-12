@@ -222,12 +222,12 @@ const JasyptEncryptionPage: React.FC = () => {
     >
       <div className="h-full flex flex-col">
         {/* Header */}
-        <div className="flex-shrink-0 border-b border-border-primary bg-surface-primary p-6">
+        <div className="flex-shrink-0 border-b border-border-primary bg-surface-primary p-6 glass-card">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-2xl font-bold text-text-primary mb-2 font-display">
+            <h1 className="text-3xl font-bold text-text-primary mb-2 font-display text-gradient-enterprise animate-fade-in">
               Jasypt Encryption
             </h1>
-            <p className="text-text-secondary">
+            <p className="text-text-secondary text-lg animate-slide-in">
               Production-grade encryption and decryption with Jasypt-compatible algorithms
             </p>
           </div>

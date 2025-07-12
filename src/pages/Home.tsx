@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   CardHeader, 
@@ -7,11 +7,58 @@ import {
   AnimatedCard,
   Heading,
   Text,
-  StatusMessage
+  WelcomeCard,
+  OnboardingTour,
+  SecurityBadge,
+  TrustIndicator,
+  Tooltip,
+  HelpButton
 } from '../components/ui';
 import { Icons } from '../styles/icons';
 
 const Home: React.FC = () => {
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+
+  useEffect(() => {
+    const hasVisited = localStorage.getItem('devutils-visited');
+    if (!hasVisited) {
+      setShowWelcome(true);
+    }
+  }, []);
+
+  const handleGetStarted = () => {
+    setShowWelcome(false);
+    setShowOnboarding(true);
+    localStorage.setItem('devutils-visited', 'true');
+  };
+
+  const handleSkipWelcome = () => {
+    setShowWelcome(false);
+    localStorage.setItem('devutils-visited', 'true');
+  };
+
+  const onboardingSteps = [
+    {
+      id: 'tools-overview',
+      title: 'Developer Tools Overview',
+      description: 'These are professional-grade tools for JSON processing, JWT analysis, and secure encryption.',
+      position: 'center' as const
+    },
+    {
+      id: 'security-trust',
+      title: 'Enterprise Security',
+      description: 'All processing happens locally in your browser. Your data never leaves your device.',
+      position: 'center' as const
+    },
+    {
+      id: 'getting-started',
+      title: 'Getting Started',
+      description: 'Click on any tool card to begin. Each tool has guided workflows and helpful tooltips.',
+      position: 'center' as const
+    }
+  ];
+
   const tools = [
     {
       name: 'JSON Validator & Formatter',
@@ -45,29 +92,42 @@ const Home: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="text-center mb-12 space-y-6">
-        <Heading 
-          size="h1" 
-          gradient="enterprise"
-          className="animate-fade-in"
-        >
-          Developer Utilities
-        </Heading>
+      <div className="text-center mb-8 space-y-4">
+        <div className="flex items-center justify-center gap-3">
+          <Heading 
+            size="h1" 
+            gradient="enterprise"
+            className="animate-fade-in"
+          >
+            Developer Utilities
+          </Heading>
+          <Tooltip content="Learn more about our enterprise-grade security and features">
+            <HelpButton 
+              onClick={() => setShowOnboarding(true)}
+              className="ml-2"
+            />
+          </Tooltip>
+        </div>
+        
         <Text 
-          size="lg" 
+          size="base" 
           color="secondary" 
-          className="animate-slide-in"
+          className="animate-slide-in max-w-xl mx-auto"
         >
-          Enterprise-grade tools for developers - JSON validation, JWT decoding, and secure encryption
+          Professional JSON, JWT, and encryption tools with enterprise security
         </Text>
         
-        <StatusMessage 
-          variant="info" 
-          className="max-w-xl mx-auto animate-bounce-in"
-          icon={<Icons.Enterprise className="w-5 h-5" />}
-        >
-          <strong>Production Ready:</strong> Professional UI with glassmorphism effects and smooth animations.
-        </StatusMessage>
+        <div className="flex items-center justify-center gap-3 flex-wrap">
+          <SecurityBadge variant="secure" size="sm">
+            100% Local
+          </SecurityBadge>
+          <SecurityBadge variant="encrypted" size="sm">
+            Zero Data Collection
+          </SecurityBadge>
+          <SecurityBadge variant="verified" size="sm">
+            Enterprise Ready
+          </SecurityBadge>
+        </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -80,14 +140,14 @@ const Home: React.FC = () => {
               className="block"
             >
               <AnimatedCard 
-                className="h-full border-border-primary hover:border-primary-200"
+                className="h-full border-border-primary hover:border-primary-200 glass-card"
                 animation="hover"
-                shadow="lg"
+                shadow="glass"
                 withRipple
               >
                 <CardHeader>
                   <div className="flex items-center space-x-3">
-                    <div className={`${tool.color} p-3 rounded-xl bg-gradient-to-br from-surface-secondary to-surface-tertiary shadow-elevation1`}>
+                    <div className={`${tool.color} p-3 rounded-xl btn-enterprise shadow-lg`}>
                       <IconComponent size={24} />
                     </div>
                     <div className="flex-1">
@@ -106,6 +166,33 @@ const Home: React.FC = () => {
           );
         })}
       </div>
+
+      {/* Welcome Card for First-Time Users */}
+      {showWelcome && (
+        <WelcomeCard
+          title="Welcome to Developer Utilities"
+          description="Professional-grade tools designed for developers who demand security, reliability, and beautiful interfaces."
+          features={[
+            "100% client-side processing",
+            "Enterprise-grade security",
+            "Beautiful, responsive interface",
+            "No data collection or tracking"
+          ]}
+          onGetStarted={handleGetStarted}
+          onSkip={handleSkipWelcome}
+          illustration={<Icons.Enterprise size={64} className="text-primary-500" />}
+        />
+      )}
+
+      {/* Onboarding Tour */}
+      <OnboardingTour
+        steps={onboardingSteps}
+        isActive={showOnboarding}
+        onComplete={() => setShowOnboarding(false)}
+        onSkip={() => setShowOnboarding(false)}
+        showProgress={true}
+        showSkip={true}
+      />
     </div>
   );
 };

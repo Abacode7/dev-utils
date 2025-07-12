@@ -42,3 +42,53 @@ export {
   ProgressStatus 
 } from './StatusMessage';
 export type { StatusMessageProps, ToastProps, ProgressStatusProps } from './StatusMessage';
+
+// Advanced UX Components - Stage 6 Phase 3
+export { 
+  ProgressiveDisclosure, 
+  AdvancedOptions, 
+  CollapsibleSection, 
+  FeatureToggle,
+  disclosureVariants,
+  triggerVariants 
+} from './ProgressiveDisclosure';
+export type { ProgressiveDisclosureProps, AdvancedOptionsProps, CollapsibleSectionProps, FeatureToggleProps } from './ProgressiveDisclosure';
+
+export { 
+  OnboardingTour, 
+  Tooltip, 
+  WelcomeCard, 
+  HelpButton,
+  tooltipVariants 
+} from './Onboarding';
+export type { OnboardingTourProps, OnboardingStep, TooltipProps, WelcomeCardProps, HelpButtonProps } from './Onboarding';
+
+export { 
+  EmptyState, 
+  NoDataState, 
+  NoResultsState, 
+  ErrorState, 
+  LoadingState, 
+  WelcomeState, 
+  WorkflowStepState,
+  emptyStateVariants 
+} from './EmptyState';
+export type { EmptyStateProps } from './EmptyState';
+
+export { 
+  SecurityBadge, 
+  TrustIndicator, 
+  VerificationStatus, 
+  SecurityNotice, 
+  PrivacyIndicator, 
+  ComplianceBadge,
+  securityBadgeVariants 
+} from './TrustElements';
+export type { 
+  SecurityBadgeProps, 
+  TrustIndicatorProps, 
+  VerificationStatusProps, 
+  SecurityNoticeProps, 
+  PrivacyIndicatorProps, 
+  ComplianceBadgeProps 
+} from './TrustElements';

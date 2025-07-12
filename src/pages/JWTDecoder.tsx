@@ -142,12 +142,12 @@ const JwtDecoder: React.FC = () => {
     >
       <div className="h-full flex flex-col">
         {/* Header */}
-        <div className="flex-shrink-0 border-b border-border-primary bg-surface-primary p-6">
+        <div className="flex-shrink-0 border-b border-border-primary bg-surface-primary p-6 glass-card">
           <div className="max-w-5xl mx-auto">
-            <h1 className="text-2xl font-bold text-text-primary mb-2 font-display">
+            <h1 className="text-3xl font-bold text-text-primary mb-2 font-display text-gradient-enterprise animate-fade-in">
               JWT Decoder
             </h1>
-            <p className="text-text-secondary">
+            <p className="text-text-secondary text-lg animate-slide-in">
               Decode, validate, and verify JSON Web Tokens with security analysis
             </p>
           </div>
@@ -169,10 +169,10 @@ const JwtDecoder: React.FC = () => {
         <div className="flex-1 overflow-y-auto p-6">
           <div className="max-w-5xl mx-auto space-y-6">
             {/* JWT Input */}
-            <Card>
+            <Card className="glass-card animate-slide-in shadow-glass">
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg">JWT Token Input</CardTitle>
+                  <CardTitle className="text-lg font-display">JWT Token Input</CardTitle>
                   <div className="flex items-center space-x-3">
                     {decoded && expiryStatus && (
                       <span className={`text-xs px-3 py-1.5 rounded-full font-medium ${
@@ -197,7 +197,7 @@ const JwtDecoder: React.FC = () => {
                       />
                       <button
                         onClick={handleClear}
-                        className="px-3 py-1.5 bg-neutral-500 text-white rounded-md hover:bg-neutral-600 transition-colors font-medium"
+                        className="btn-glass px-3 py-1.5 rounded-md transition-all font-medium"
                       >
                         Clear
                       </button>

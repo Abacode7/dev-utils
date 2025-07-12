@@ -6,7 +6,7 @@ import StepIndicator from '../components/StepIndicator';
 import CopyButton from '../components/CopyButton';
 import FileUpload from '../components/FileUpload';
 import URLInput from '../components/URLInput';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui';
+import { Card, CardHeader, CardTitle, CardContent, AdvancedOptions, Tooltip, HelpButton } from '../components/ui';
 import { useDebounce } from '../hooks/useDebounce';
 
 interface ValidationResult {
@@ -107,12 +107,12 @@ const JsonValidator: React.FC = () => {
     >
       <div className="h-full flex flex-col">
         {/* Header */}
-        <div className="flex-shrink-0 border-b border-border-primary bg-surface-primary p-6">
+        <div className="flex-shrink-0 border-b border-border-primary bg-surface-primary p-6 glass-card">
           <div className="max-w-5xl mx-auto">
-            <h1 className="text-2xl font-bold text-text-primary mb-2 font-display">
+            <h1 className="text-3xl font-bold text-text-primary mb-2 font-display text-gradient-enterprise animate-fade-in">
               JSON Validator & Formatter
             </h1>
-            <p className="text-text-secondary">
+            <p className="text-text-secondary text-lg animate-slide-in">
               Validate, format, and beautify your JSON data with real-time feedback
             </p>
           </div>
@@ -134,9 +134,14 @@ const JsonValidator: React.FC = () => {
         <div className="flex-1 overflow-y-auto p-6">
           <div className="max-w-5xl mx-auto space-y-6">
             {/* Input Controls */}
-            <Card>
+            <Card className="glass-card animate-slide-in shadow-glass">
               <CardHeader>
-                <CardTitle className="text-lg">Input Options</CardTitle>
+                <div className="flex items-center gap-2">
+                  <CardTitle className="text-lg font-display">Input Options</CardTitle>
+                  <Tooltip content="Upload files, paste URLs, or configure formatting options">
+                    <HelpButton />
+                  </Tooltip>
+                </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex flex-wrap gap-4">
@@ -145,53 +150,64 @@ const JsonValidator: React.FC = () => {
                 </div>
                 
                 <div className="flex flex-wrap gap-4 items-center">
-                  <div className="flex items-center space-x-2">
-                    <label className="text-sm font-medium text-text-secondary">Indent:</label>
-                    <select
-                      value={indentType}
-                      onChange={(e) => setIndentType(e.target.value as 'spaces' | 'tabs')}
-                      className="px-3 py-1.5 border border-border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-surface-primary text-text-primary"
-                    >
-                      <option value="spaces">Spaces</option>
-                      <option value="tabs">Tabs</option>
-                    </select>
-                    {indentType === 'spaces' && (
-                      <select
-                        value={indentSize}
-                        onChange={(e) => setIndentSize(Number(e.target.value))}
-                        className="px-3 py-1.5 border border-border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-surface-primary text-text-primary"
-                      >
-                        <option value={2}>2</option>
-                        <option value={4}>4</option>
-                      </select>
-                    )}
-                  </div>
                   <div className="flex space-x-2">
                     <button
                       onClick={handleClear}
-                      className="px-4 py-1.5 bg-neutral-500 text-white rounded-md hover:bg-neutral-600 transition-colors font-medium"
+                      className="btn-glass px-4 py-1.5 rounded-md transition-all font-medium"
                     >
                       Clear
                     </button>
                     <button
                       onClick={handleMinify}
                       disabled={!validation.isValid || !input.trim()}
-                      className="px-4 py-1.5 bg-warning-500 text-white rounded-md hover:bg-warning-600 disabled:bg-neutral-400 disabled:cursor-not-allowed transition-colors font-medium"
+                      className="btn-enterprise px-4 py-1.5 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-all font-medium"
                     >
                       Minify
                     </button>
                   </div>
                 </div>
+
+                <AdvancedOptions 
+                  title="Formatting Options"
+                  subtitle="Configure JSON output formatting"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-2">
+                      <label className="text-sm font-medium text-text-secondary">Indent Type:</label>
+                      <select
+                        value={indentType}
+                        onChange={(e) => setIndentType(e.target.value as 'spaces' | 'tabs')}
+                        className="px-3 py-1.5 border border-border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-surface-primary text-text-primary"
+                      >
+                        <option value="spaces">Spaces</option>
+                        <option value="tabs">Tabs</option>
+                      </select>
+                    </div>
+                    {indentType === 'spaces' && (
+                      <div className="flex items-center space-x-2">
+                        <label className="text-sm font-medium text-text-secondary">Size:</label>
+                        <select
+                          value={indentSize}
+                          onChange={(e) => setIndentSize(Number(e.target.value))}
+                          className="px-3 py-1.5 border border-border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-surface-primary text-text-primary"
+                        >
+                          <option value={2}>2 spaces</option>
+                          <option value={4}>4 spaces</option>
+                        </select>
+                      </div>
+                    )}
+                  </div>
+                </AdvancedOptions>
               </CardContent>
             </Card>
 
             {/* Editor Grid */}
             <div className="grid lg:grid-cols-2 gap-6">
               {/* Input Editor */}
-              <Card className="flex flex-col">
+              <Card className="flex flex-col glass-card shadow-glass animate-slide-in-left">
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle>Input JSON</CardTitle>
+                    <CardTitle className="font-display">Input JSON</CardTitle>
                     <span className={`text-xs px-2 py-1 rounded-full font-medium ${
                       validation.isValid 
                         ? 'bg-success-100 text-success-700' 
@@ -227,10 +243,10 @@ const JsonValidator: React.FC = () => {
               </Card>
 
               {/* Output Editor */}
-              <Card className="flex flex-col">
+              <Card className="flex flex-col glass-card shadow-glass animate-slide-in-right">
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle>Formatted Output</CardTitle>
+                    <CardTitle className="font-display">Formatted Output</CardTitle>
                     <CopyButton 
                       text={validation.formatted || ''} 
                       className="text-sm"
