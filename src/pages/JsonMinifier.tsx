@@ -2,11 +2,11 @@ import { useState } from 'react';
 import Editor from '@monaco-editor/react';
 import TwoColumnLayout from '../components/TwoColumnLayout';
 import ToolSidebar from '../components/ToolSidebar';
-import StepIndicator from '../components/StepIndicator';
 import CopyButton from '../components/CopyButton';
 import FileUpload from '../components/FileUpload';
 import URLInput from '../components/URLInput';
-import { Card, CardHeader, CardTitle, CardContent, WelcomeState } from '../components/ui';
+import { Card, CardHeader, CardTitle, CardContent, Button } from '../components/ui';
+import { Icons } from '../styles/icons';
 
 interface MinifyResult {
   isValid: boolean;
@@ -19,46 +19,18 @@ interface MinifyResult {
 
 const JsonMinifier: React.FC = () => {
   const [input, setInput] = useState('{\n  "name": "example",\n  "description": "This is a sample JSON object",\n  "nested": {\n    "array": [1, 2, 3, 4, 5],\n    "boolean": true,\n    "null": null\n  }\n}');
-  const [result, setResult] = useState<MinifyResult>({ 
-    isValid: true, 
-    originalSize: 0, 
-    minifiedSize: 0, 
-    compressionRatio: 0 
+  const [result, setResult] = useState<MinifyResult>({
+    isValid: true,
+    originalSize: 0,
+    minifiedSize: 0,
+    compressionRatio: 0
   });
-  const [currentStep] = useState('input');
-
-  const steps = [
-    {
-      id: 'input',
-      title: 'Input JSON',
-      description: 'Enter or upload JSON data',
-      status: (input.trim() ? 'completed' : 'current') as 'pending' | 'current' | 'completed' | 'error',
-    },
-    {
-      id: 'validate',
-      title: 'Validate',
-      description: 'Check JSON syntax',
-      status: (input.trim() ? (result.isValid ? 'completed' : 'error') : 'pending') as 'pending' | 'current' | 'completed' | 'error',
-    },
-    {
-      id: 'minify',
-      title: 'Minify',
-      description: 'Compress JSON',
-      status: (result.isValid && result.minified ? 'completed' : 'pending') as 'pending' | 'current' | 'completed' | 'error',
-    },
-    {
-      id: 'download',
-      title: 'Download',
-      description: 'Save minified result',
-      status: 'pending' as 'pending' | 'current' | 'completed' | 'error',
-    },
-  ];
 
   const calculateSizes = (original: string, minified: string) => {
     const originalSize = new Blob([original]).size;
     const minifiedSize = new Blob([minified]).size;
     const compressionRatio = originalSize > 0 ? ((originalSize - minifiedSize) / originalSize) * 100 : 0;
-    
+
     return { originalSize, minifiedSize, compressionRatio };
   };
 
@@ -72,7 +44,7 @@ const JsonMinifier: React.FC = () => {
       const parsed = JSON.parse(jsonString);
       const minified = JSON.stringify(parsed);
       const sizes = calculateSizes(jsonString, minified);
-      
+
       setResult({
         isValid: true,
         minified,
@@ -106,9 +78,9 @@ const JsonMinifier: React.FC = () => {
   };
 
   const formatBytes = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) return '0 B';
     const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const sizes = ['B', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
@@ -132,71 +104,39 @@ const JsonMinifier: React.FC = () => {
       sidebar={<ToolSidebar />}
       sidebarWidth="md"
     >
-      <div className="h-full flex flex-col">
+      <div className="h-full flex flex-col bg-white">
         {/* Header */}
-        <div className="flex-shrink-0 border-b border-border-primary bg-surface-primary p-6 glass-card">
-          <div className="max-w-5xl mx-auto">
-            <h1 className="text-3xl font-bold text-text-primary mb-2 font-display text-gradient-enterprise animate-fade-in">
-              JSON Minifier
-            </h1>
-            <p className="text-text-secondary text-lg animate-slide-in">
-              Compress your JSON by removing unnecessary whitespace and formatting
-            </p>
-          </div>
+        <div className="border-b border-neutral-100 px-8 py-6">
+          <h1 className="text-xl font-semibold text-neutral-900">JSON Minifier</h1>
+          <p className="mt-1 text-sm text-neutral-500">
+            Compress your JSON by removing unnecessary whitespace and formatting.
+          </p>
         </div>
 
-        {/* Step Indicator */}
-        <div className="flex-shrink-0 bg-surface-secondary border-b border-border-primary p-6">
-          <div className="max-w-5xl mx-auto">
-            <StepIndicator
-              steps={steps}
-              currentStep={currentStep}
-              size="sm"
-              orientation="horizontal"
-            />
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="max-w-5xl mx-auto space-y-6">
-            {/* Input Controls & Stats */}
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg">Input Options & Compression Stats</CardTitle>
-                  <button
-                    onClick={handleClear}
-                    className="px-4 py-1.5 bg-neutral-500 text-white rounded-md hover:bg-neutral-600 transition-colors font-medium"
-                  >
-                    Clear
-                  </button>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex flex-wrap gap-4">
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto p-8">
+          <div className="max-w-5xl space-y-6">
+            {/* Controls & Stats */}
+            <Card size="sm">
+              <CardContent className="p-4">
+                <div className="flex flex-wrap items-center gap-4">
                   <FileUpload onFileContent={handleFileContent} className="flex-shrink-0" />
-                  <URLInput onURLContent={handleFileContent} className="flex-1 min-w-0" />
-                </div>
-                
-                <div className="flex flex-wrap gap-4 items-center">
-                  <span className={`text-xs px-3 py-1.5 rounded-full font-medium ${
-                    result.isValid 
-                      ? 'bg-success-100 text-success-700' 
-                      : 'bg-error-100 text-error-700'
-                  }`}>
-                    {result.isValid ? 'Valid JSON' : 'Invalid JSON'}
-                  </span>
-                  
-                  {result.isValid && result.originalSize > 0 && (
-                    <div className="flex items-center space-x-4 text-sm text-text-secondary">
-                      <span>Original: <span className="font-medium">{formatBytes(result.originalSize)}</span></span>
-                      <span>Minified: <span className="font-medium">{formatBytes(result.minifiedSize)}</span></span>
-                      <span className="font-semibold text-success-600">
-                        Saved: {result.compressionRatio.toFixed(1)}%
-                      </span>
-                    </div>
-                  )}
+                  <URLInput onURLContent={handleFileContent} className="flex-1 min-w-[200px]" />
+
+                  <div className="flex items-center gap-4 ml-auto">
+                    {result.isValid && result.originalSize > 0 && (
+                      <div className="flex items-center gap-4 text-sm text-neutral-600">
+                        <span>Original: <span className="font-medium">{formatBytes(result.originalSize)}</span></span>
+                        <span>Minified: <span className="font-medium">{formatBytes(result.minifiedSize)}</span></span>
+                        <span className="font-semibold text-green-600">
+                          -{result.compressionRatio.toFixed(1)}%
+                        </span>
+                      </div>
+                    )}
+                    <Button variant="ghost" size="sm" onClick={handleClear}>
+                      Clear
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -204,12 +144,21 @@ const JsonMinifier: React.FC = () => {
             {/* Editor Grid */}
             <div className="grid lg:grid-cols-2 gap-6">
               {/* Input Editor */}
-              <Card className="flex flex-col">
-                <CardHeader>
-                  <CardTitle>Input JSON</CardTitle>
+              <Card size="none">
+                <CardHeader className="p-4 border-b border-neutral-100">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-sm font-medium">Input JSON</CardTitle>
+                    <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                      result.isValid
+                        ? 'bg-green-50 text-green-700'
+                        : 'bg-red-50 text-red-700'
+                    }`}>
+                      {result.isValid ? 'Valid' : 'Invalid'}
+                    </span>
+                  </div>
                 </CardHeader>
-                <CardContent className="flex-1 flex flex-col">
-                  <div className="flex-1 border border-border-primary rounded-lg overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="border-b border-neutral-100">
                     <Editor
                       height="400px"
                       language="json"
@@ -219,14 +168,15 @@ const JsonMinifier: React.FC = () => {
                       options={{
                         minimap: { enabled: false },
                         scrollBeyondLastLine: false,
-                        fontSize: 14,
+                        fontSize: 13,
                         wordWrap: 'on',
                         automaticLayout: true,
+                        padding: { top: 12, bottom: 12 },
                       }}
                     />
                   </div>
                   {!result.isValid && (
-                    <div className="mt-3 p-3 bg-error-50 border border-error-200 rounded-md text-error-700">
+                    <div className="p-3 bg-red-50 text-red-700 text-sm">
                       <strong>Error:</strong> {result.error}
                     </div>
                   )}
@@ -234,50 +184,47 @@ const JsonMinifier: React.FC = () => {
               </Card>
 
               {/* Output Editor */}
-              <Card className="flex flex-col">
-                <CardHeader>
+              <Card size="none">
+                <CardHeader className="p-4 border-b border-neutral-100">
                   <div className="flex items-center justify-between">
-                    <CardTitle>Minified JSON</CardTitle>
-                    <div className="flex space-x-2">
-                      <CopyButton 
-                        text={result.minified || ''} 
-                        className="text-sm"
-                      />
-                      <button
+                    <CardTitle className="text-sm font-medium">Minified JSON</CardTitle>
+                    <div className="flex items-center gap-2">
+                      <CopyButton text={result.minified || ''} />
+                      <Button
+                        variant="default"
+                        size="sm"
                         onClick={downloadMinified}
                         disabled={!result.minified}
-                        className="px-3 py-1.5 bg-success-500 text-white rounded-md hover:bg-success-600 disabled:bg-neutral-400 disabled:cursor-not-allowed transition-colors text-sm font-medium"
                       >
                         Download
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="flex-1 flex flex-col">
+                <CardContent className="p-0">
                   {result.minified ? (
-                    <div className="flex-1 border border-border-primary rounded-lg overflow-hidden">
-                      <Editor
-                        height="400px"
-                        language="json"
-                        value={result.minified}
-                        options={{
-                          readOnly: true,
-                          minimap: { enabled: false },
-                          scrollBeyondLastLine: false,
-                          fontSize: 14,
-                          wordWrap: 'on',
-                          automaticLayout: true,
-                        }}
-                        theme="vs-light"
-                      />
-                    </div>
-                  ) : (
-                    <WelcomeState
-                      icon="compress"
-                      title="Ready to Minify"
-                      description="Enter JSON on the left to see the compressed version here with size savings"
-                      className="flex-1 min-h-[400px]"
+                    <Editor
+                      height="400px"
+                      language="json"
+                      value={result.minified}
+                      options={{
+                        readOnly: true,
+                        minimap: { enabled: false },
+                        scrollBeyondLastLine: false,
+                        fontSize: 13,
+                        wordWrap: 'on',
+                        automaticLayout: true,
+                        padding: { top: 12, bottom: 12 },
+                      }}
+                      theme="vs-light"
                     />
+                  ) : (
+                    <div className="h-[400px] flex items-center justify-center text-neutral-400">
+                      <div className="text-center">
+                        <Icons.Compress size={32} className="mx-auto mb-2 opacity-50" />
+                        <p className="text-sm">Enter JSON to see minified output</p>
+                      </div>
+                    </div>
                   )}
                 </CardContent>
               </Card>
