@@ -119,6 +119,7 @@ storybook-static
 
 # Local development
 .local/
+CLAUDE.local.md
 
 # Lighthouse reports
 lighthouse-report.html
