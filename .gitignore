@@ -129,3 +129,4 @@ lighthouse-report.json
 coverage/
 test-results/
 playwright-report/
+screenshots/

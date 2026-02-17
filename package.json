@@ -15,7 +15,8 @@
     "lighthouse": "lhci autorun",
     "clean": "rm -rf dist node_modules/.vite",
     "deploy:netlify": "npm run build && netlify deploy --prod --dir=dist",
-    "deploy:vercel": "npm run build && vercel --prod"
+    "deploy:vercel": "npm run build && vercel --prod",
+    "clean_screenshots": "rm -rf screenshots/ && mkdir screenshots"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
