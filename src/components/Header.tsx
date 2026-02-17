@@ -9,6 +9,8 @@ const Header: React.FC = () => {
   const { isMobile } = useResponsive();
   const location = useLocation();
 
+  const isHome = location.pathname === '/';
+
   const navigationItems = [
     { path: '/json-validator', label: 'JSON Validator', icon: Icons.Json },
     { path: '/json-minifier', label: 'JSON Minifier', icon: Icons.Compress },
@@ -19,43 +21,53 @@ const Header: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-surface-primary border-b border-border-primary shadow-sm sticky top-0 z-header">
-      <div className="w-full px-8 sm:px-12 md:px-16 lg:px-24">
-        <div className="flex items-center justify-between py-4">
-          <Link 
-            to="/" 
-            className="flex items-center space-x-2 text-xl font-bold text-primary-600 hover:text-primary-700 transition-colors font-display"
+    <header className="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg border-b border-neutral-200 dark:border-neutral-800 sticky top-0 z-50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link
+            to="/"
+            className="flex items-center gap-2.5 group"
           >
-            <Icons.Home size={24} />
-            <span className="hidden xs:inline">DevUtils</span>
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <Icons.Home size={18} className="text-white" />
+            </div>
+            <span className="text-lg font-semibold text-neutral-900 dark:text-white tracking-tight">
+              DevUtils
+            </span>
           </Link>
-          
+
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6">
-            {navigationItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`flex items-center space-x-1 px-3 py-2 rounded-md transition-colors font-medium ${
-                  isActive(item.path)
-                    ? 'text-primary-600 bg-primary-50'
-                    : 'text-text-secondary hover:text-primary-600 hover:bg-neutral-50'
-                }`}
-              >
-                <item.icon size={16} />
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </nav>
-          
-          <div className="flex items-center space-x-2">
+          {!isHome && (
+            <nav className="hidden md:flex items-center gap-1">
+              {navigationItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`
+                    flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium
+                    transition-colors duration-150
+                    ${isActive(item.path)
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800'
+                    }
+                  `}
+                >
+                  <item.icon size={16} />
+                  <span>{item.label}</span>
+                </Link>
+              ))}
+            </nav>
+          )}
+
+          <div className="flex items-center gap-2">
             <ThemeToggle />
-            
+
             {/* Mobile menu button */}
-            {isMobile && (
+            {isMobile && !isHome && (
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 rounded-md text-text-secondary hover:text-primary-600 hover:bg-neutral-50 transition-colors touch-friendly"
+                className="md:hidden p-2 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
                 aria-label="Toggle mobile menu"
               >
                 <Icons.Menu size={20} />
@@ -65,21 +77,24 @@ const Header: React.FC = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMobile && isMobileMenuOpen && (
-          <div className="md:hidden border-t border-border-primary bg-surface-secondary">
-            <nav className="px-8 sm:px-12 md:px-16 lg:px-24 py-4 space-y-2">
+        {isMobile && isMobileMenuOpen && !isHome && (
+          <div className="md:hidden border-t border-neutral-200 dark:border-neutral-800 py-3">
+            <nav className="flex flex-col gap-1">
               {navigationItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-md transition-colors font-medium touch-friendly ${
-                    isActive(item.path)
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-text-secondary hover:text-primary-600 hover:bg-neutral-50'
-                  }`}
+                  className={`
+                    flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+                    transition-colors duration-150
+                    ${isActive(item.path)
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800'
+                    }
+                  `}
                 >
-                  <item.icon size={20} />
+                  <item.icon size={18} />
                   <span>{item.label}</span>
                 </Link>
               ))}

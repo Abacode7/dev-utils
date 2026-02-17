@@ -335,6 +335,19 @@ export const LockIcon: React.FC<IconProps> = (props) => (
   </Icon>
 );
 
+export const ShieldIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Shield">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+  </Icon>
+);
+
+export const ArrowRightIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="Arrow Right">
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12,5 19,12 12,19" />
+  </Icon>
+);
+
 // Export all icons for easy access
 export const Icons = {
   // JSON tools
@@ -385,6 +398,8 @@ export const Icons = {
   Warning: WarningIcon,
   Globe: GlobeIcon,
   Lock: LockIcon,
+  Shield: ShieldIcon,
+  ArrowRight: ArrowRightIcon,
   FileIcon: FileIcon,
 } as const;
 
