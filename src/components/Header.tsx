@@ -21,7 +21,10 @@ const Header: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg border-b border-neutral-200 dark:border-neutral-800 sticky top-0 z-50">
+    <header
+      className="backdrop-blur-lg border-b sticky top-0 z-50 bg-white/80 dark:bg-[#09090b]/80"
+      style={{ borderColor: 'var(--border-default)' }}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}

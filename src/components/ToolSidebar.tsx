@@ -59,12 +59,18 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
   }, {} as Record<string, ToolInfo[]>);
 
   return (
-    <div className={`h-full bg-white border-r border-neutral-100 ${className}`}>
+    <div
+      className={`h-full border-r ${className}`}
+      style={{ background: 'var(--bg-primary)', borderColor: 'var(--border-default)' }}
+    >
       <div className="p-6">
         <div className="space-y-6">
           {Object.entries(groupedTools).map(([category, categoryTools]) => (
             <div key={category}>
-              <h3 className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-3 px-3">
+              <h3
+                className="text-xs font-semibold uppercase tracking-wider mb-3 px-3"
+                style={{ color: 'var(--text-tertiary)' }}
+              >
                 {category}
               </h3>
               <div className="space-y-1">
@@ -79,14 +85,17 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
                       className={`
                         flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-colors duration-150
                         ${isActive
-                          ? 'bg-neutral-900 text-white'
-                          : 'text-neutral-600 hover:bg-neutral-100'
+                          ? 'bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900'
+                          : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800'
                         }
                       `}
                       aria-label={`Navigate to ${tool.name} tool`}
                       aria-current={isActive ? 'page' : undefined}
                     >
-                      <IconComponent size={18} className={isActive ? 'text-white' : 'text-neutral-500'} />
+                      <IconComponent
+                        size={18}
+                        className={isActive ? 'text-white dark:text-neutral-900' : 'text-neutral-500 dark:text-neutral-400'}
+                      />
                       <span className="text-sm font-medium">{tool.name}</span>
                     </Link>
                   );

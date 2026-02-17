@@ -14,6 +14,7 @@ import PasswordStrengthMeter from '../components/PasswordStrengthMeter';
 import { Card, CardHeader, CardTitle, CardContent, Button } from '../components/ui';
 import { Icons } from '../styles/icons';
 import { useDebounce } from '../hooks/useDebounce';
+import { useTheme } from '../hooks/useTheme';
 
 type Mode = 'encrypt' | 'decrypt' | 'compare';
 
@@ -32,6 +33,8 @@ const JasyptEncryptionPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  // useTheme hook ensures theme context is available for CSS variables
+  useTheme();
 
   const debouncedPassword = useDebounce(password, 300);
 
@@ -167,11 +170,11 @@ const JasyptEncryptionPage: React.FC = () => {
       sidebar={<ToolSidebar />}
       sidebarWidth="md"
     >
-      <div className="h-full flex flex-col bg-white">
+      <div className="h-full flex flex-col" style={{ background: 'var(--bg-primary)' }}>
         {/* Header */}
-        <div className="border-b border-neutral-100 px-8 py-6">
-          <h1 className="text-xl font-semibold text-neutral-900">Jasypt Encryption</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+        <div className="border-b px-8 py-6" style={{ borderColor: 'var(--border-default)' }}>
+          <h1 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>Jasypt Encryption</h1>
+          <p className="mt-1 text-sm" style={{ color: 'var(--text-secondary)' }}>
             Production-grade encryption and decryption with Jasypt-compatible algorithms.
           </p>
         </div>
@@ -180,10 +183,10 @@ const JasyptEncryptionPage: React.FC = () => {
         <div className="flex-1 overflow-y-auto p-8">
           <div className="max-w-4xl space-y-6">
             {/* Security Notice */}
-            <div className="p-4 bg-sky-50 rounded-lg">
+            <div className="p-4 bg-sky-50 dark:bg-sky-900/30 rounded-lg">
               <div className="flex items-start gap-3">
-                <Icons.Info size={18} className="text-sky-600 mt-0.5 flex-shrink-0" />
-                <div className="text-sm text-sky-800">
+                <Icons.Info size={18} className="text-sky-600 dark:text-sky-400 mt-0.5 flex-shrink-0" />
+                <div className="text-sm text-sky-800 dark:text-sky-300">
                   <strong>Security Notice:</strong> Use strong, unique passwords. Store passwords securely using environment variables or key management systems.
                 </div>
               </div>
@@ -191,20 +194,20 @@ const JasyptEncryptionPage: React.FC = () => {
 
             {/* Mode Selection & Configuration */}
             <Card size="sm">
-              <CardHeader className="p-4 border-b border-neutral-100">
+              <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
                 <CardTitle className="text-sm font-medium">Configuration</CardTitle>
               </CardHeader>
               <CardContent className="p-4 space-y-4">
                 {/* Mode Selection */}
-                <div className="flex items-center gap-1 p-1 bg-neutral-100 rounded-lg w-fit">
+                <div className="flex items-center gap-1 p-1 bg-neutral-100 dark:bg-neutral-800 rounded-lg w-fit">
                   {(['encrypt', 'decrypt', 'compare'] as Mode[]).map((m) => (
                     <button
                       key={m}
                       onClick={() => setMode(m)}
                       className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                         mode === m
-                          ? 'bg-white text-neutral-900 shadow-sm'
-                          : 'text-neutral-600 hover:text-neutral-900'
+                          ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 shadow-sm'
+                          : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200'
                       }`}
                     >
                       {m.charAt(0).toUpperCase() + m.slice(1)}
@@ -218,7 +221,7 @@ const JasyptEncryptionPage: React.FC = () => {
                   <select
                     value={algorithm}
                     onChange={(e) => setAlgorithm(e.target.value as SupportedAlgorithm)}
-                    className="px-3 py-2 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white text-neutral-700"
+                    className="px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 dark:border-neutral-700"
                   >
                     <option value="AES-256-GCM">AES-256-GCM (Recommended)</option>
                     <option value="PBEWithHmacSHA256AndAES_256">PBEWithHmacSHA256AndAES_256</option>
@@ -233,7 +236,7 @@ const JasyptEncryptionPage: React.FC = () => {
             {/* Password Input */}
             {mode !== 'compare' && (
               <Card size="sm">
-                <CardHeader className="p-4 border-b border-neutral-100">
+                <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
                   <CardTitle className="text-sm font-medium">Password</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 space-y-4">
@@ -244,7 +247,7 @@ const JasyptEncryptionPage: React.FC = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter encryption password..."
-                        className="w-full px-3 py-2 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white text-neutral-900 placeholder:text-neutral-400"
+                        className="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border-neutral-200 dark:border-neutral-700 placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                       />
                     </div>
                     <Button variant="outline" onClick={handleGeneratePassword}>
@@ -258,13 +261,13 @@ const JasyptEncryptionPage: React.FC = () => {
 
             {/* Messages */}
             {error && (
-              <div className="p-3 bg-red-50 text-red-700 text-sm rounded-lg">
+              <div className="p-3 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-sm rounded-lg">
                 <strong>Error:</strong> {error}
               </div>
             )}
 
             {successMessage && (
-              <div className="p-3 bg-green-50 text-green-700 text-sm rounded-lg">
+              <div className="p-3 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm rounded-lg">
                 <strong>Success:</strong> {successMessage}
               </div>
             )}
@@ -272,17 +275,17 @@ const JasyptEncryptionPage: React.FC = () => {
             {/* Encrypt Mode */}
             {mode === 'encrypt' && (
               <Card size="sm">
-                <CardHeader className="p-4 border-b border-neutral-100">
+                <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
                   <CardTitle className="text-sm font-medium">Encrypt Text</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-neutral-700 mb-2">Plaintext</label>
+                    <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>Plaintext</label>
                     <textarea
                       value={plaintext}
                       onChange={(e) => setPlaintext(e.target.value)}
                       placeholder="Enter text to encrypt..."
-                      className="w-full h-32 p-3 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white text-neutral-900 placeholder:text-neutral-400 resize-none"
+                      className="w-full h-32 p-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border-neutral-200 dark:border-neutral-700 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 resize-none"
                     />
                   </div>
 
@@ -295,9 +298,9 @@ const JasyptEncryptionPage: React.FC = () => {
                   </Button>
 
                   {encryptionResult && (
-                    <div className="space-y-3 pt-4 border-t border-neutral-100">
+                    <div className="space-y-3 pt-4 border-t" style={{ borderColor: 'var(--border-default)' }}>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-neutral-700">Encrypted Result</span>
+                        <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Encrypted Result</span>
                         <div className="flex items-center gap-2">
                           <CopyButton text={encryptedText} />
                           <Button variant="outline" size="sm" onClick={downloadResult}>
@@ -308,9 +311,9 @@ const JasyptEncryptionPage: React.FC = () => {
                       <textarea
                         value={encryptedText}
                         readOnly
-                        className="w-full h-24 p-3 text-sm border border-neutral-200 rounded-lg bg-neutral-50 font-mono text-neutral-900 resize-none"
+                        className="w-full h-24 p-3 text-sm border rounded-lg bg-neutral-50 dark:bg-neutral-800 font-mono text-neutral-900 dark:text-neutral-100 border-neutral-200 dark:border-neutral-700 resize-none"
                       />
-                      <div className="flex gap-4 text-xs text-neutral-500">
+                      <div className="flex gap-4 text-xs" style={{ color: 'var(--text-tertiary)' }}>
                         <span>Algorithm: {encryptionResult.algorithm}</span>
                         <span>Iterations: {encryptionResult.iterations}</span>
                       </div>
@@ -323,17 +326,17 @@ const JasyptEncryptionPage: React.FC = () => {
             {/* Decrypt Mode */}
             {mode === 'decrypt' && (
               <Card size="sm">
-                <CardHeader className="p-4 border-b border-neutral-100">
+                <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
                   <CardTitle className="text-sm font-medium">Decrypt Text</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-neutral-700 mb-2">Encrypted Text</label>
+                    <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>Encrypted Text</label>
                     <textarea
                       value={encryptedText}
                       onChange={(e) => setEncryptedText(e.target.value)}
                       placeholder="Enter encrypted text to decrypt..."
-                      className="w-full h-32 p-3 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white text-neutral-900 font-mono placeholder:text-neutral-400 resize-none"
+                      className="w-full h-32 p-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border-neutral-200 dark:border-neutral-700 font-mono placeholder:text-neutral-400 dark:placeholder:text-neutral-500 resize-none"
                     />
                   </div>
 
@@ -346,15 +349,15 @@ const JasyptEncryptionPage: React.FC = () => {
                   </Button>
 
                   {decryptionResult && decryptionResult.isValid && (
-                    <div className="space-y-3 pt-4 border-t border-neutral-100">
+                    <div className="space-y-3 pt-4 border-t" style={{ borderColor: 'var(--border-default)' }}>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-neutral-700">Decrypted Result</span>
+                        <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Decrypted Result</span>
                         <CopyButton text={decryptedText} />
                       </div>
                       <textarea
                         value={decryptedText}
                         readOnly
-                        className="w-full h-24 p-3 text-sm border border-green-200 rounded-lg bg-green-50 text-neutral-900 resize-none"
+                        className="w-full h-24 p-3 text-sm border rounded-lg bg-green-50 dark:bg-green-900/30 text-neutral-900 dark:text-neutral-100 border-green-200 dark:border-green-800 resize-none"
                       />
                     </div>
                   )}
@@ -365,27 +368,27 @@ const JasyptEncryptionPage: React.FC = () => {
             {/* Compare Mode */}
             {mode === 'compare' && (
               <Card size="sm">
-                <CardHeader className="p-4 border-b border-neutral-100">
+                <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
                   <CardTitle className="text-sm font-medium">Compare Texts</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 space-y-4">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-neutral-700 mb-2">Text 1</label>
+                      <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>Text 1</label>
                       <textarea
                         value={compareText1}
                         onChange={(e) => setCompareText1(e.target.value)}
                         placeholder="Enter first text..."
-                        className="w-full h-32 p-3 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white text-neutral-900 placeholder:text-neutral-400 resize-none"
+                        className="w-full h-32 p-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border-neutral-200 dark:border-neutral-700 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 resize-none"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-neutral-700 mb-2">Text 2</label>
+                      <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>Text 2</label>
                       <textarea
                         value={compareText2}
                         onChange={(e) => setCompareText2(e.target.value)}
                         placeholder="Enter second text..."
-                        className="w-full h-32 p-3 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white text-neutral-900 placeholder:text-neutral-400 resize-none"
+                        className="w-full h-32 p-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border-neutral-200 dark:border-neutral-700 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 resize-none"
                       />
                     </div>
                   </div>

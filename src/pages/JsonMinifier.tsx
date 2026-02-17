@@ -7,6 +7,7 @@ import FileUpload from '../components/FileUpload';
 import URLInput from '../components/URLInput';
 import { Card, CardHeader, CardTitle, CardContent, Button } from '../components/ui';
 import { Icons } from '../styles/icons';
+import { useTheme } from '../hooks/useTheme';
 
 interface MinifyResult {
   isValid: boolean;
@@ -25,6 +26,8 @@ const JsonMinifier: React.FC = () => {
     minifiedSize: 0,
     compressionRatio: 0
   });
+  const { resolvedTheme } = useTheme();
+  const monacoTheme = resolvedTheme === 'dark' ? 'vs-dark' : 'vs-light';
 
   const calculateSizes = (original: string, minified: string) => {
     const originalSize = new Blob([original]).size;
@@ -104,11 +107,11 @@ const JsonMinifier: React.FC = () => {
       sidebar={<ToolSidebar />}
       sidebarWidth="md"
     >
-      <div className="h-full flex flex-col bg-white">
+      <div className="h-full flex flex-col" style={{ background: 'var(--bg-primary)' }}>
         {/* Header */}
-        <div className="border-b border-neutral-100 px-8 py-6">
-          <h1 className="text-xl font-semibold text-neutral-900">JSON Minifier</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+        <div className="border-b px-8 py-6" style={{ borderColor: 'var(--border-default)' }}>
+          <h1 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>JSON Minifier</h1>
+          <p className="mt-1 text-sm" style={{ color: 'var(--text-secondary)' }}>
             Compress your JSON by removing unnecessary whitespace and formatting.
           </p>
         </div>
@@ -125,10 +128,10 @@ const JsonMinifier: React.FC = () => {
 
                   <div className="flex items-center gap-4 ml-auto">
                     {result.isValid && result.originalSize > 0 && (
-                      <div className="flex items-center gap-4 text-sm text-neutral-600">
+                      <div className="flex items-center gap-4 text-sm" style={{ color: 'var(--text-secondary)' }}>
                         <span>Original: <span className="font-medium">{formatBytes(result.originalSize)}</span></span>
                         <span>Minified: <span className="font-medium">{formatBytes(result.minifiedSize)}</span></span>
-                        <span className="font-semibold text-green-600">
+                        <span className="font-semibold text-green-600 dark:text-green-400">
                           -{result.compressionRatio.toFixed(1)}%
                         </span>
                       </div>
@@ -145,26 +148,26 @@ const JsonMinifier: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-6">
               {/* Input Editor */}
               <Card size="none">
-                <CardHeader className="p-4 border-b border-neutral-100">
+                <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium">Input JSON</CardTitle>
                     <span className={`text-xs px-2 py-1 rounded-full font-medium ${
                       result.isValid
-                        ? 'bg-green-50 text-green-700'
-                        : 'bg-red-50 text-red-700'
+                        ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                        : 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400'
                     }`}>
                       {result.isValid ? 'Valid' : 'Invalid'}
                     </span>
                   </div>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <div className="border-b border-neutral-100">
+                  <div className="border-b" style={{ borderColor: 'var(--border-default)' }}>
                     <Editor
                       height="400px"
                       language="json"
                       value={input}
                       onChange={handleInputChange}
-                      theme="vs-light"
+                      theme={monacoTheme}
                       options={{
                         minimap: { enabled: false },
                         scrollBeyondLastLine: false,
@@ -176,7 +179,7 @@ const JsonMinifier: React.FC = () => {
                     />
                   </div>
                   {!result.isValid && (
-                    <div className="p-3 bg-red-50 text-red-700 text-sm">
+                    <div className="p-3 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-sm">
                       <strong>Error:</strong> {result.error}
                     </div>
                   )}
@@ -185,7 +188,7 @@ const JsonMinifier: React.FC = () => {
 
               {/* Output Editor */}
               <Card size="none">
-                <CardHeader className="p-4 border-b border-neutral-100">
+                <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium">Minified JSON</CardTitle>
                     <div className="flex items-center gap-2">
@@ -216,10 +219,10 @@ const JsonMinifier: React.FC = () => {
                         automaticLayout: true,
                         padding: { top: 12, bottom: 12 },
                       }}
-                      theme="vs-light"
+                      theme={monacoTheme}
                     />
                   ) : (
-                    <div className="h-[400px] flex items-center justify-center text-neutral-400">
+                    <div className="h-[400px] flex items-center justify-center" style={{ color: 'var(--text-tertiary)' }}>
                       <div className="text-center">
                         <Icons.Compress size={32} className="mx-auto mb-2 opacity-50" />
                         <p className="text-sm">Enter JSON to see minified output</p>

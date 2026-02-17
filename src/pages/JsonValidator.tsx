@@ -8,6 +8,7 @@ import URLInput from '../components/URLInput';
 import { Card, CardHeader, CardTitle, CardContent, Button } from '../components/ui';
 import { Icons } from '../styles/icons';
 import { useDebounce } from '../hooks/useDebounce';
+import { useTheme } from '../hooks/useTheme';
 
 interface ValidationResult {
   isValid: boolean;
@@ -21,6 +22,8 @@ const JsonValidator: React.FC = () => {
   const [indentSize, setIndentSize] = useState(2);
   const [indentType, setIndentType] = useState<'spaces' | 'tabs'>('spaces');
   const debouncedInput = useDebounce(input, 300);
+  const { resolvedTheme } = useTheme();
+  const monacoTheme = resolvedTheme === 'dark' ? 'vs-dark' : 'vs-light';
 
   const validateAndFormat = useCallback((jsonString: string) => {
     try {
@@ -77,11 +80,11 @@ const JsonValidator: React.FC = () => {
       sidebar={<ToolSidebar />}
       sidebarWidth="md"
     >
-      <div className="h-full flex flex-col bg-white">
+      <div className="h-full flex flex-col" style={{ background: 'var(--bg-primary)' }}>
         {/* Header */}
-        <div className="border-b border-neutral-100 px-8 py-6">
-          <h1 className="text-xl font-semibold text-neutral-900">JSON Validator</h1>
-          <p className="mt-1 text-sm text-neutral-500">
+        <div className="border-b px-8 py-6" style={{ borderColor: 'var(--border-default)' }}>
+          <h1 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>JSON Validator</h1>
+          <p className="mt-1 text-sm" style={{ color: 'var(--text-secondary)' }}>
             Validate, format, and beautify your JSON data with real-time feedback.
           </p>
         </div>
@@ -100,7 +103,7 @@ const JsonValidator: React.FC = () => {
                     <select
                       value={indentType}
                       onChange={(e) => setIndentType(e.target.value as 'spaces' | 'tabs')}
-                      className="px-3 py-2 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white text-neutral-700"
+                      className="px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 dark:border-neutral-700"
                     >
                       <option value="spaces">Spaces</option>
                       <option value="tabs">Tabs</option>
@@ -109,7 +112,7 @@ const JsonValidator: React.FC = () => {
                       <select
                         value={indentSize}
                         onChange={(e) => setIndentSize(Number(e.target.value))}
-                        className="px-3 py-2 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-white text-neutral-700"
+                        className="px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 dark:border-neutral-700"
                       >
                         <option value={2}>2 spaces</option>
                         <option value={4}>4 spaces</option>
@@ -130,26 +133,26 @@ const JsonValidator: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-6">
               {/* Input Editor */}
               <Card size="none">
-                <CardHeader className="p-4 border-b border-neutral-100">
+                <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium">Input JSON</CardTitle>
                     <span className={`text-xs px-2 py-1 rounded-full font-medium ${
                       validation.isValid
-                        ? 'bg-green-50 text-green-700'
-                        : 'bg-red-50 text-red-700'
+                        ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                        : 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400'
                     }`}>
                       {validation.isValid ? 'Valid' : 'Invalid'}
                     </span>
                   </div>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <div className="border-b border-neutral-100">
+                  <div className="border-b" style={{ borderColor: 'var(--border-default)' }}>
                     <Editor
                       height="400px"
                       language="json"
                       value={input}
                       onChange={handleInputChange}
-                      theme="vs-light"
+                      theme={monacoTheme}
                       options={{
                         minimap: { enabled: false },
                         scrollBeyondLastLine: false,
@@ -161,7 +164,7 @@ const JsonValidator: React.FC = () => {
                     />
                   </div>
                   {!validation.isValid && (
-                    <div className="p-3 bg-red-50 text-red-700 text-sm">
+                    <div className="p-3 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-sm">
                       <strong>Error:</strong> {validation.error}
                     </div>
                   )}
@@ -170,7 +173,7 @@ const JsonValidator: React.FC = () => {
 
               {/* Output Editor */}
               <Card size="none">
-                <CardHeader className="p-4 border-b border-neutral-100">
+                <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-sm font-medium">Formatted Output</CardTitle>
                     <CopyButton text={validation.formatted || ''} />
@@ -191,10 +194,10 @@ const JsonValidator: React.FC = () => {
                         automaticLayout: true,
                         padding: { top: 12, bottom: 12 },
                       }}
-                      theme="vs-light"
+                      theme={monacoTheme}
                     />
                   ) : (
-                    <div className="h-[400px] flex items-center justify-center text-neutral-400">
+                    <div className="h-[400px] flex items-center justify-center" style={{ color: 'var(--text-tertiary)' }}>
                       <div className="text-center">
                         <Icons.Json size={32} className="mx-auto mb-2 opacity-50" />
                         <p className="text-sm">Enter valid JSON to see formatted output</p>

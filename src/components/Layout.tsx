@@ -9,7 +9,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-background-primary">
+    <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
       <Header />
       <ErrorBoundary>
         <main className="w-full px-8 sm:px-12 md:px-16 lg:px-24 py-12">
