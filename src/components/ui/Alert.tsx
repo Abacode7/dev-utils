@@ -3,15 +3,15 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/cn';
 
 const alertVariants = cva(
-  'relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+  'relative w-full rounded-xl border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4',
   {
     variants: {
       variant: {
-        default: 'bg-surface-secondary border-border-primary text-text-primary',
-        destructive: 'border-error-500/50 text-error-600 bg-error-50 [&>svg]:text-error-600',
-        success: 'border-success-500/50 text-success-600 bg-success-50 [&>svg]:text-success-600',
-        warning: 'border-warning-500/50 text-warning-600 bg-warning-50 [&>svg]:text-warning-600',
-        info: 'border-primary-500/50 text-primary-600 bg-primary-50 [&>svg]:text-primary-600',
+        default: 'bg-surface0 border-surface1 text-text',
+        destructive: 'bg-red/10 border-red/30 text-red [&>svg]:text-red',
+        success: 'bg-green/10 border-green/30 text-green [&>svg]:text-green',
+        warning: 'bg-yellow/10 border-yellow/30 text-yellow [&>svg]:text-yellow',
+        info: 'bg-blue/10 border-blue/30 text-blue [&>svg]:text-blue',
       },
     },
     defaultVariants: {
@@ -40,7 +40,7 @@ const AlertTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h5
     ref={ref}
-    className={cn('mb-1 font-medium leading-none tracking-tight', className)}
+    className={cn('mb-1 font-semibold leading-none tracking-tight', className)}
     {...props}
   />
 ));
@@ -53,7 +53,7 @@ const AlertDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('text-sm [&_p]:leading-relaxed', className)}
+    className={cn('text-sm [&_p]:leading-relaxed opacity-90', className)}
     {...props}
   />
 ));

@@ -3,18 +3,19 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/cn';
 
 const inputVariants = cva(
-  'flex w-full rounded-lg border bg-white dark:bg-neutral-900 px-3 py-2 text-sm text-neutral-900 dark:text-neutral-100 transition-colors duration-150 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 dark:focus-visible:ring-neutral-100 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-900 disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-neutral-50 dark:disabled:bg-neutral-800',
+  'flex w-full rounded-xl border bg-surface0 px-4 py-2 text-sm text-text transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-overlay0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mauve focus-visible:ring-offset-2 focus-visible:ring-offset-base disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-surface1',
   {
     variants: {
       variant: {
-        default: 'border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600',
-        error: 'border-red-500 focus-visible:ring-red-500',
-        success: 'border-green-500 focus-visible:ring-green-500',
+        default: 'border-surface1 hover:border-surface2 focus:border-mauve',
+        error: 'border-red focus-visible:ring-red',
+        success: 'border-green focus-visible:ring-green',
+        glass: 'bg-surface0/50 backdrop-blur-sm border-surface1/50 hover:bg-surface0/70',
       },
       inputSize: {
-        default: 'h-10',
-        sm: 'h-9 text-sm',
-        lg: 'h-11 text-base',
+        default: 'h-11',
+        sm: 'h-9 text-sm px-3',
+        lg: 'h-12 text-base px-5',
       },
     },
     defaultVariants: {

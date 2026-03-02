@@ -1,147 +1,208 @@
-// Design Tokens - Enterprise SaaS Design System
+// Design Tokens - Terminal Luxe Design System
+// Inspired by Catppuccin Mocha with warm, premium aesthetics
+
 export const designTokens = {
-  // Color Palette with Semantic Tokens
+  // Catppuccin Mocha Color Palette
   colors: {
-    // Primary - Neutral scale for professional look
-    primary: {
-      50: '#fafafa',
-      100: '#f4f4f5',
-      200: '#e4e4e7',
-      300: '#d4d4d8',
-      400: '#a1a1aa',
-      500: '#71717a',
-      600: '#52525b',
-      700: '#3f3f46',
-      800: '#27272a',
-      900: '#18181b',
-      950: '#09090b'
+    // Base colors - Deep, warm backgrounds
+    base: {
+      crust: '#11111b',
+      mantle: '#181825',
+      base: '#1e1e2e',
+      surface0: '#313244',
+      surface1: '#45475a',
+      surface2: '#585b70',
+      overlay0: '#6c7086',
+      overlay1: '#7f849c',
+      overlay2: '#9399b2',
     },
 
-    // Accent - Sky blue for CTAs
-    accent: {
-      50: '#f0f9ff',
-      100: '#e0f2fe',
-      200: '#bae6fd',
-      300: '#7dd3fc',
-      400: '#38bdf8',
-      500: '#0ea5e9',
-      600: '#0284c7',
-      700: '#0369a1',
-      800: '#075985',
-      900: '#0c4a6e'
-    },
-
-    // Success States
-    success: {
-      50: '#f0fdf4',
-      100: '#dcfce7',
-      200: '#bbf7d0',
-      300: '#86efac',
-      400: '#4ade80',
-      500: '#22c55e',
-      600: '#16a34a',
-      700: '#15803d',
-      800: '#166534',
-      900: '#14532d'
-    },
-
-    // Warning States
-    warning: {
-      50: '#fffbeb',
-      100: '#fef3c7',
-      200: '#fde68a',
-      300: '#fcd34d',
-      400: '#fbbf24',
-      500: '#f59e0b',
-      600: '#d97706',
-      700: '#b45309',
-      800: '#92400e',
-      900: '#78350f'
-    },
-
-    // Error States
-    error: {
-      50: '#fef2f2',
-      100: '#fee2e2',
-      200: '#fecaca',
-      300: '#fca5a5',
-      400: '#f87171',
-      500: '#ef4444',
-      600: '#dc2626',
-      700: '#b91c1c',
-      800: '#991b1b',
-      900: '#7f1d1d'
-    },
-
-    // Neutral/Gray Scale
-    neutral: {
-      0: '#ffffff',
-      50: '#fafafa',
-      100: '#f4f4f5',
-      200: '#e4e4e7',
-      300: '#d4d4d8',
-      400: '#a1a1aa',
-      500: '#71717a',
-      600: '#52525b',
-      700: '#3f3f46',
-      800: '#27272a',
-      900: '#18181b',
-      950: '#09090b'
-    },
-
-    // Semantic Colors
-    background: {
-      primary: '#ffffff',
-      secondary: '#fafafa',
-      tertiary: '#f4f4f5',
-      inverse: '#18181b'
-    },
-
+    // Text colors - Soft, readable
     text: {
-      primary: '#18181b',
-      secondary: '#52525b',
-      tertiary: '#71717a',
-      inverse: '#ffffff',
-      disabled: '#a1a1aa'
+      subtext0: '#a6adc8',
+      subtext1: '#bac2de',
+      text: '#cdd6f4',
     },
 
-    border: {
-      primary: '#e4e4e7',
-      secondary: '#d4d4d8',
-      focus: '#18181b',
-      error: '#ef4444'
+    // Accent colors - Vibrant pastels
+    accents: {
+      rosewater: '#f5e0dc',
+      flamingo: '#f2cdcd',
+      pink: '#f5c2e7',
+      mauve: '#cba6f7',
+      red: '#f38ba8',
+      maroon: '#eba0ac',
+      peach: '#fab387',
+      yellow: '#f9e2af',
+      green: '#a6e3a1',
+      teal: '#94e2d5',
+      sky: '#89dceb',
+      sapphire: '#74c7ec',
+      blue: '#89b4fa',
+      lavender: '#b4befe',
     },
 
+    // Tool-specific accent mapping
+    tools: {
+      json: '#f5c2e7',      // pink - JSON Validator
+      minify: '#94e2d5',    // teal - JSON Minifier
+      jwt: '#cba6f7',       // mauve - JWT Decoder
+      jasypt: '#a6e3a1',    // green - Jasypt Encryption
+    },
+
+    // Semantic colors mapped to Catppuccin
+    success: {
+      50: 'rgba(166, 227, 161, 0.1)',
+      100: 'rgba(166, 227, 161, 0.2)',
+      200: 'rgba(166, 227, 161, 0.3)',
+      500: '#a6e3a1',
+      600: '#94d391',
+      700: '#82c381',
+    },
+
+    warning: {
+      50: 'rgba(249, 226, 175, 0.1)',
+      100: 'rgba(249, 226, 175, 0.2)',
+      200: 'rgba(249, 226, 175, 0.3)',
+      500: '#f9e2af',
+      600: '#f7d99a',
+      700: '#f5d085',
+    },
+
+    error: {
+      50: 'rgba(243, 139, 168, 0.1)',
+      100: 'rgba(243, 139, 168, 0.2)',
+      200: 'rgba(243, 139, 168, 0.3)',
+      500: '#f38ba8',
+      600: '#f17a9a',
+      700: '#ef698c',
+    },
+
+    info: {
+      50: 'rgba(137, 180, 250, 0.1)',
+      100: 'rgba(137, 180, 250, 0.2)',
+      200: 'rgba(137, 180, 250, 0.3)',
+      500: '#89b4fa',
+      600: '#77a8f9',
+      700: '#659cf8',
+    },
+
+    // Background semantic
+    background: {
+      primary: '#1e1e2e',
+      secondary: '#181825',
+      tertiary: '#11111b',
+      elevated: '#313244',
+      inverse: '#cdd6f4',
+    },
+
+    // Surface semantic
     surface: {
-      primary: '#ffffff',
-      secondary: '#fafafa',
-      tertiary: '#f4f4f5',
-      elevated: '#ffffff',
-      overlay: 'rgba(0, 0, 0, 0.5)'
-    }
+      primary: '#1e1e2e',
+      secondary: '#313244',
+      tertiary: '#45475a',
+      elevated: '#45475a',
+      overlay: 'rgba(17, 17, 27, 0.85)',
+      glass: 'rgba(49, 50, 68, 0.6)',
+    },
+
+    // Border semantic
+    border: {
+      primary: '#313244',
+      secondary: '#45475a',
+      tertiary: '#585b70',
+      focus: '#cba6f7',
+      error: '#f38ba8',
+    },
+
+    // Gradients
+    gradients: {
+      primary: 'linear-gradient(135deg, #cba6f7 0%, #f5c2e7 100%)',
+      secondary: 'linear-gradient(135deg, #94e2d5 0%, #89dceb 100%)',
+      accent: 'linear-gradient(135deg, #f5c2e7 0%, #cba6f7 50%, #89b4fa 100%)',
+      mesh: `
+        radial-gradient(at 40% 20%, rgba(203, 166, 247, 0.15) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, rgba(245, 194, 231, 0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, rgba(148, 226, 213, 0.1) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, rgba(137, 180, 250, 0.08) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(249, 226, 175, 0.08) 0px, transparent 50%)
+      `,
+    },
+  },
+
+  // Light theme overrides
+  lightColors: {
+    base: {
+      crust: '#dce0e8',
+      mantle: '#e6e9ef',
+      base: '#eff1f5',
+      surface0: '#ccd0da',
+      surface1: '#bcc0cc',
+      surface2: '#acb0be',
+      overlay0: '#9ca0b0',
+      overlay1: '#8c8fa1',
+      overlay2: '#7c7f93',
+    },
+    text: {
+      subtext0: '#6c6f85',
+      subtext1: '#5c5f77',
+      text: '#4c4f69',
+    },
+    background: {
+      primary: '#eff1f5',
+      secondary: '#e6e9ef',
+      tertiary: '#dce0e8',
+      elevated: '#ccd0da',
+      inverse: '#4c4f69',
+    },
+    surface: {
+      primary: '#eff1f5',
+      secondary: '#ccd0da',
+      tertiary: '#bcc0cc',
+      elevated: '#bcc0cc',
+      overlay: 'rgba(220, 224, 232, 0.9)',
+      glass: 'rgba(204, 208, 218, 0.6)',
+    },
+    border: {
+      primary: '#ccd0da',
+      secondary: '#bcc0cc',
+      tertiary: '#acb0be',
+      focus: '#8839ef',
+      error: '#d20f39',
+    },
+    gradients: {
+      mesh: `
+        radial-gradient(at 40% 20%, rgba(136, 57, 239, 0.08) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, rgba(234, 118, 203, 0.06) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, rgba(23, 146, 153, 0.06) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, rgba(30, 102, 245, 0.05) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(223, 142, 29, 0.05) 0px, transparent 50%)
+      `,
+    },
   },
 
   // Typography Scale
   typography: {
     fontFamily: {
-      sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-      mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', 'monospace']
+      sans: ['Satoshi', 'system-ui', '-apple-system', 'sans-serif'],
+      display: ['Satoshi', 'system-ui', '-apple-system', 'sans-serif'],
+      mono: ['JetBrains Mono', 'SF Mono', 'Monaco', 'monospace'],
     },
 
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
       sm: ['0.875rem', { lineHeight: '1.25rem' }],
-      base: ['1rem', { lineHeight: '1.5rem' }],
+      base: ['1rem', { lineHeight: '1.6' }],
       lg: ['1.125rem', { lineHeight: '1.75rem' }],
       xl: ['1.25rem', { lineHeight: '1.75rem' }],
       '2xl': ['1.5rem', { lineHeight: '2rem' }],
       '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
       '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
-      '5xl': ['3rem', { lineHeight: '1' }],
+      '5xl': ['3rem', { lineHeight: '1.1' }],
       '6xl': ['3.75rem', { lineHeight: '1' }],
       '7xl': ['4.5rem', { lineHeight: '1' }],
       '8xl': ['6rem', { lineHeight: '1' }],
-      '9xl': ['8rem', { lineHeight: '1' }]
+      '9xl': ['8rem', { lineHeight: '1' }],
     },
 
     fontWeight: {
@@ -153,7 +214,7 @@ export const designTokens = {
       semibold: '600',
       bold: '700',
       extrabold: '800',
-      black: '900'
+      black: '900',
     },
 
     letterSpacing: {
@@ -162,8 +223,8 @@ export const designTokens = {
       normal: '0em',
       wide: '0.025em',
       wider: '0.05em',
-      widest: '0.1em'
-    }
+      widest: '0.1em',
+    },
   },
 
   // Spacing Scale
@@ -202,32 +263,43 @@ export const designTokens = {
     64: '16rem',
     72: '18rem',
     80: '20rem',
-    96: '24rem'
+    96: '24rem',
   },
 
   // Border Radius
   borderRadius: {
     none: '0',
-    sm: '4px',
-    DEFAULT: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    '2xl': '20px',
-    '3xl': '24px',
-    full: '9999px'
+    sm: '6px',
+    DEFAULT: '8px',
+    md: '12px',
+    lg: '16px',
+    xl: '20px',
+    '2xl': '24px',
+    '3xl': '32px',
+    full: '9999px',
   },
 
-  // Shadows - Clean, subtle elevation
+  // Shadows - Elevated, glowing
   boxShadow: {
     none: 'none',
-    sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-    DEFAULT: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
-    md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-    lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-    xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
-    '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
-    inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)'
+    sm: '0 2px 8px -2px rgba(0, 0, 0, 0.3)',
+    DEFAULT: '0 4px 16px -4px rgba(0, 0, 0, 0.4)',
+    md: '0 8px 24px -6px rgba(0, 0, 0, 0.5)',
+    lg: '0 16px 40px -8px rgba(0, 0, 0, 0.5)',
+    xl: '0 24px 56px -12px rgba(0, 0, 0, 0.6)',
+    '2xl': '0 32px 72px -16px rgba(0, 0, 0, 0.7)',
+    inner: 'inset 0 2px 8px 0 rgba(0, 0, 0, 0.3)',
+    // Glow shadows
+    glow: {
+      pink: '0 0 40px -8px rgba(245, 194, 231, 0.4)',
+      mauve: '0 0 40px -8px rgba(203, 166, 247, 0.4)',
+      teal: '0 0 40px -8px rgba(148, 226, 213, 0.4)',
+      green: '0 0 40px -8px rgba(166, 227, 161, 0.4)',
+      blue: '0 0 40px -8px rgba(137, 180, 250, 0.4)',
+    },
+    // Glass shadows
+    glass: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+    glassLg: '0 16px 48px 0 rgba(0, 0, 0, 0.4)',
   },
 
   // Animation & Transitions
@@ -240,15 +312,17 @@ export const designTokens = {
       300: '300ms',
       500: '500ms',
       700: '700ms',
-      1000: '1000ms'
+      1000: '1000ms',
     },
 
     easing: {
       linear: 'linear',
       in: 'cubic-bezier(0.4, 0, 1, 1)',
       out: 'cubic-bezier(0, 0, 0.2, 1)',
-      inOut: 'cubic-bezier(0.4, 0, 0.2, 1)'
-    }
+      inOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+      smooth: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+    },
   },
 
   // Z-Index Scale
@@ -268,7 +342,7 @@ export const designTokens = {
     popover: '1060',
     tooltip: '1070',
     notification: '1080',
-    overlay: '1090'
+    overlay: '1090',
   },
 
   // Breakpoints
@@ -277,74 +351,21 @@ export const designTokens = {
     md: '768px',
     lg: '1024px',
     xl: '1280px',
-    '2xl': '1536px'
-  }
+    '2xl': '1536px',
+  },
+
+  // Glassmorphism
+  glass: {
+    blur: '16px',
+    saturate: '180%',
+    opacity: '0.6',
+  },
 } as const;
 
-// Dark Mode Tokens
-export const darkTokens = {
-  colors: {
-    background: {
-      primary: '#09090b',
-      secondary: '#18181b',
-      tertiary: '#27272a',
-      inverse: '#ffffff'
-    },
-
-    text: {
-      primary: '#fafafa',
-      secondary: '#a1a1aa',
-      tertiary: '#71717a',
-      inverse: '#18181b',
-      disabled: '#52525b'
-    },
-
-    border: {
-      primary: '#27272a',
-      secondary: '#3f3f46',
-      focus: '#fafafa',
-      error: '#f87171'
-    },
-
-    surface: {
-      primary: '#18181b',
-      secondary: '#27272a',
-      tertiary: '#3f3f46',
-      elevated: '#27272a',
-      overlay: 'rgba(0, 0, 0, 0.8)'
-    }
-  }
-} as const;
-
-// CSS Custom Properties Generator
-export const generateCSSVariables = (tokens: typeof designTokens, isDark = false) => {
-  const theme = isDark ? { ...tokens, colors: { ...tokens.colors, ...darkTokens.colors } } : tokens;
-
-  const cssVars: Record<string, string> = {};
-
-  // Generate color variables
-  Object.entries(theme.colors).forEach(([category, colors]) => {
-    if (typeof colors === 'object') {
-      Object.entries(colors).forEach(([key, value]) => {
-        cssVars[`--color-${category}-${key}`] = value as string;
-      });
-    }
-  });
-
-  // Generate spacing variables
-  Object.entries(theme.spacing).forEach(([key, value]) => {
-    cssVars[`--spacing-${key}`] = value;
-  });
-
-  // Generate typography variables
-  Object.entries(theme.typography.fontSize).forEach(([key, value]) => {
-    if (Array.isArray(value)) {
-      cssVars[`--font-size-${key}`] = value[0];
-      cssVars[`--line-height-${key}`] = value[1].lineHeight;
-    }
-  });
-
-  return cssVars;
+// Export individual color palettes for easy access
+export const catppuccin = {
+  mocha: designTokens.colors,
+  latte: designTokens.lightColors,
 };
 
 export type DesignTokens = typeof designTokens;
