@@ -110,7 +110,6 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
                           ? `color-mix(in srgb, ${styles.color} 12%, transparent)`
                           : 'transparent',
                         color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                        boxShadow: isActive ? styles.glow : 'none',
                         border: isActive
                           ? `1px solid color-mix(in srgb, ${styles.color} 25%, transparent)`
                           : '1px solid transparent',
@@ -118,23 +117,12 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
                       aria-label={`Navigate to ${tool.name} tool`}
                       aria-current={isActive ? 'page' : undefined}
                     >
-                      {/* Active glow background */}
-                      {isActive && (
-                        <div
-                          className="absolute inset-0 opacity-30 pointer-events-none"
-                          style={{
-                            background: `radial-gradient(circle at 0% 50%, ${styles.color} 0%, transparent 60%)`,
-                          }}
-                        />
-                      )}
-
-                      {/* Active indicator bar with glow */}
+                      {/* Active indicator bar */}
                       {isActive && (
                         <div
                           className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full"
                           style={{
                             background: styles.color,
-                            boxShadow: `0 0 12px ${styles.color}`,
                           }}
                         />
                       )}
