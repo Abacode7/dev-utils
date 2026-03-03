@@ -8,37 +8,37 @@
    CSS Variables - Light Mode (Default) - Catppuccin Latte
    ============================================ */
 :root {
-  /* Base colors - Catppuccin Latte */
-  --crust: #dce0e8;
-  --mantle: #e6e9ef;
-  --base: #eff1f5;
-  --surface0: #ccd0da;
-  --surface1: #bcc0cc;
-  --surface2: #acb0be;
-  --overlay0: #9ca0b0;
-  --overlay1: #8c8fa1;
-  --overlay2: #7c7f93;
+  /* Base colors - Catppuccin Latte with enhanced contrast */
+  --crust: #d5dae5;
+  --mantle: #e0e4ed;
+  --base: #f4f5f9;
+  --surface0: #c5cad8;
+  --surface1: #b0b6c8;
+  --surface2: #9ba2b5;
+  --overlay0: #8a91a5;
+  --overlay1: #7a8195;
+  --overlay2: #6a7185;
 
-  /* Text */
-  --subtext0: #6c6f85;
-  --subtext1: #5c5f77;
-  --text: #4c4f69;
+  /* Text - Enhanced contrast */
+  --subtext0: #5a5f75;
+  --subtext1: #484d62;
+  --text: #363a4f;
 
-  /* Accent colors - Latte (more saturated) */
-  --rosewater: #dc8a78;
-  --flamingo: #dd7878;
-  --pink: #ea76cb;
-  --mauve: #8839ef;
-  --red: #d20f39;
-  --maroon: #e64553;
-  --peach: #fe640b;
-  --yellow: #df8e1d;
-  --green: #40a02b;
-  --teal: #179299;
-  --sky: #04a5e5;
-  --sapphire: #209fb5;
-  --blue: #1e66f5;
-  --lavender: #7287fd;
+  /* Accent colors - Latte (more vibrant/saturated) */
+  --rosewater: #d87a68;
+  --flamingo: #d56868;
+  --pink: #e558be;
+  --mauve: #7c2de8;
+  --red: #c40d35;
+  --maroon: #d93d4a;
+  --peach: #f25600;
+  --yellow: #cc8010;
+  --green: #369022;
+  --teal: #0f8188;
+  --sky: #0095d0;
+  --sapphire: #188fa5;
+  --blue: #1558e0;
+  --lavender: #6275f0;
 
   /* Semantic mappings */
   --bg-primary: var(--base);
@@ -63,23 +63,23 @@
   --tool-jwt: var(--mauve);
   --tool-jasypt: var(--green);
 
-  /* Shadows - Light mode */
-  --shadow-sm: 0 2px 8px -2px rgba(76, 79, 105, 0.08);
-  --shadow-base: 0 4px 16px -4px rgba(76, 79, 105, 0.12);
-  --shadow-md: 0 8px 24px -6px rgba(76, 79, 105, 0.14);
-  --shadow-lg: 0 16px 40px -8px rgba(76, 79, 105, 0.16);
-  --shadow-xl: 0 24px 56px -12px rgba(76, 79, 105, 0.2);
+  /* Shadows - Light mode with warm undertones */
+  --shadow-sm: 0 2px 8px -2px rgba(54, 58, 79, 0.1);
+  --shadow-base: 0 4px 16px -4px rgba(54, 58, 79, 0.14);
+  --shadow-md: 0 8px 24px -6px rgba(54, 58, 79, 0.16);
+  --shadow-lg: 0 16px 40px -8px rgba(54, 58, 79, 0.18);
+  --shadow-xl: 0 24px 56px -12px rgba(54, 58, 79, 0.22);
 
-  /* Glow shadows - Light mode */
-  --glow-pink: 0 0 60px -12px rgba(234, 118, 203, 0.3);
-  --glow-mauve: 0 0 60px -12px rgba(136, 57, 239, 0.3);
-  --glow-teal: 0 0 60px -12px rgba(23, 146, 153, 0.3);
-  --glow-green: 0 0 60px -12px rgba(64, 160, 43, 0.3);
-  --glow-blue: 0 0 60px -12px rgba(30, 102, 245, 0.3);
+  /* Glow shadows - Light mode (more vibrant) */
+  --glow-pink: 0 0 50px -10px rgba(229, 88, 190, 0.4);
+  --glow-mauve: 0 0 50px -10px rgba(124, 45, 232, 0.4);
+  --glow-teal: 0 0 50px -10px rgba(15, 129, 136, 0.4);
+  --glow-green: 0 0 50px -10px rgba(54, 144, 34, 0.4);
+  --glow-blue: 0 0 50px -10px rgba(21, 88, 224, 0.4);
 
-  /* Glass - Light mode */
-  --glass-bg: rgba(204, 208, 218, 0.6);
-  --glass-border: rgba(188, 192, 204, 0.7);
+  /* Glass - Light mode with stronger presence */
+  --glass-bg: rgba(197, 202, 216, 0.7);
+  --glass-border: rgba(176, 182, 200, 0.8);
   --glass-blur: 20px;
 
   /* Typography */
@@ -95,12 +95,13 @@
   --radius-2xl: 32px;
   --radius-full: 9999px;
 
-  /* Mesh gradient background - Light mode */
+  /* Mesh gradient background - Light mode with subtle warmth */
   --mesh-gradient:
-    radial-gradient(at 0% 0%, rgba(136, 57, 239, 0.08) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(234, 118, 203, 0.06) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(23, 146, 153, 0.06) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(30, 102, 245, 0.05) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(124, 45, 232, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(229, 88, 190, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(15, 129, 136, 0.08) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(21, 88, 224, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(255, 248, 240, 0.3) 0px, transparent 70%);
 }
 
 /* ============================================
@@ -356,6 +357,69 @@ body::after {
   to { transform: rotate(360deg); }
 }
 
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40%, 43% {
+    transform: translateY(-8px);
+  }
+  70% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
 /* ============================================
    Animation Utility Classes
    ============================================ */
@@ -408,6 +472,22 @@ body::after {
   animation: spin 1s linear infinite;
 }
 
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-reveal {
+  animation: scaleReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-bounce {
+  animation: bounce 1s ease infinite;
+}
+
 /* Staggered animations */
 .stagger-1 { animation-delay: 0.1s; }
 .stagger-2 { animation-delay: 0.2s; }
@@ -415,6 +495,8 @@ body::after {
 .stagger-4 { animation-delay: 0.4s; }
 .stagger-5 { animation-delay: 0.5s; }
 .stagger-6 { animation-delay: 0.6s; }
+.stagger-7 { animation-delay: 0.7s; }
+.stagger-8 { animation-delay: 0.8s; }
 
 /* ============================================
    Glass Morphism
@@ -672,6 +754,33 @@ body::after {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+
+  /* Mobile hero adjustments */
+  h1 {
+    font-size: 2.5rem !important;
+  }
+
+  /* Ensure tool cards don't truncate on mobile */
+  .tool-card-description {
+    display: block;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 768px) {
+  /* Stack tool cards on mobile with full-width */
+  .tool-grid-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .tool-grid-mobile > * {
+    width: 100%;
+  }
 }
 
 /* Touch-friendly */
@@ -679,15 +788,27 @@ body::after {
   button,
   [role="button"],
   input[type="button"],
-  input[type="submit"] {
-    min-height: 44px;
-    min-width: 44px;
+  input[type="submit"],
+  a[role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Larger touch targets for links in cards */
+  .touch-target {
+    padding: 12px;
   }
 
   input,
   select,
   textarea {
     font-size: 16px;
+    min-height: 48px;
+  }
+
+  /* Better tap feedback */
+  .tap-highlight {
+    -webkit-tap-highlight-color: rgba(136, 57, 239, 0.2);
   }
 }
 
