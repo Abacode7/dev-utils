@@ -36,7 +36,7 @@ const Header: React.FC = () => {
           >
             <div className="relative">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-mauve to-pink flex items-center justify-center shadow-lg group-hover:shadow-glow-mauve transition-shadow duration-300">
-                <Icons.Home size={18} className="text-crust" />
+                <Icons.DevUtils size={18} className="text-crust" />
               </div>
               {/* Glow effect on hover */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-mauve to-pink opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-300" />

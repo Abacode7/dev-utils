@@ -31,16 +31,28 @@ const Icon: React.FC<IconProps & { children: React.ReactNode }> = ({
   </svg>
 );
 
-// Professional Tool Icons
+// Professional Tool Icons - World Class Design
+
+// DevUtils Brand Icon - Distinctive logo combining code brackets with utility concept
+export const DevUtilsIcon: React.FC<IconProps> = (props) => (
+  <Icon {...props} aria-label="DevUtils">
+    {/* Outer angle brackets - representing code/development */}
+    <path d="M7 4L2 12l5 8" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M17 4l5 8-5 8" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Center diamond - representing precision tools/utilities */}
+    <path d="M12 6l4 6-4 6-4-6 4-6z" fill="currentColor" stroke="none" opacity="0.9" />
+    {/* Inner highlight */}
+    <path d="M12 9l2 3-2 3-2-3 2-3z" fill="currentColor" stroke="none" opacity="0.4" />
+  </Icon>
+);
+
 export const JsonIcon: React.FC<IconProps> = (props) => (
   <Icon {...props} aria-label="JSON">
-    <path d="M4 7v10c0 2.21 1.79 4 4 4h8c2.21 0 4-1.79 4-4V7c0-2.21-1.79-4-4-4H8c-2.21 0-4 1.79-4 4z" />
-    <path d="M9 9h6" />
-    <path d="M9 12h4" />
-    <path d="M9 15h6" />
-    <circle cx="7" cy="9" r="1" />
-    <circle cx="7" cy="12" r="1" />
-    <circle cx="7" cy="15" r="1" />
+    {/* Elegant curly braces representing JSON structure */}
+    <path d="M8 3C5.5 3 4 4.5 4 7v3c0 1-1 2-2 2v1c1 0 2 1 2 2v3c0 2.5 1.5 4 4 4" strokeWidth="2" fill="none" />
+    <path d="M16 3c2.5 0 4 1.5 4 4v3c0 1 1 2 2 2v1c-1 0-2 1-2 2v3c0 2.5-1.5 4-4 4" strokeWidth="2" fill="none" />
+    {/* Center dot representing data */}
+    <circle cx="12" cy="12.5" r="1.5" fill="currentColor" stroke="none" />
   </Icon>
 );
 
@@ -54,18 +66,26 @@ export const ValidateIcon: React.FC<IconProps> = (props) => (
 
 export const CompressIcon: React.FC<IconProps> = (props) => (
   <Icon {...props} aria-label="Compress">
-    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
-    <path d="M8 8l8 8" />
-    <path d="M8 16l8-8" />
+    {/* Converging arrows showing compression */}
+    <path d="M4 8l4 4-4 4" strokeWidth="2" fill="none" />
+    <path d="M20 8l-4 4 4 4" strokeWidth="2" fill="none" />
+    {/* Center compressed lines */}
+    <rect x="9" y="7" width="6" height="2" rx="1" fill="currentColor" stroke="none" />
+    <rect x="10" y="11" width="4" height="2" rx="1" fill="currentColor" stroke="none" />
+    <rect x="9" y="15" width="6" height="2" rx="1" fill="currentColor" stroke="none" />
   </Icon>
 );
 
 // JWT-related icons
 export const JwtIcon: React.FC<IconProps> = (props) => (
   <Icon {...props} aria-label="JWT Token">
-    <rect x="3" y="11" width="18" height="10" rx="2" />
-    <circle cx="12" cy="16" r="1" />
-    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    {/* Three-part token structure (header.payload.signature) */}
+    <rect x="3" y="4" width="18" height="4" rx="2" fill="currentColor" stroke="none" opacity="0.9" />
+    <rect x="3" y="10" width="18" height="4" rx="2" fill="currentColor" stroke="none" opacity="0.6" />
+    <rect x="3" y="16" width="18" height="4" rx="2" fill="currentColor" stroke="none" opacity="0.35" />
+    {/* Dot separators */}
+    <circle cx="12" cy="8.5" r="0.75" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="14.5" r="0.75" fill="currentColor" stroke="none" />
   </Icon>
 );
 
@@ -87,17 +107,21 @@ export const VerifyIcon: React.FC<IconProps> = (props) => (
 // Encryption-related icons
 export const EncryptIcon: React.FC<IconProps> = (props) => (
   <Icon {...props} aria-label="Encrypt">
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-    <circle cx="12" cy="16" r="1" />
+    {/* Shield with keyhole - security meets encryption */}
+    <path d="M12 2L4 6v5c0 5.25 3.4 10.15 8 11.5 4.6-1.35 8-6.25 8-11.5V6l-8-4z" strokeWidth="2" fill="none" />
+    {/* Elegant keyhole */}
+    <circle cx="12" cy="10" r="2" fill="currentColor" stroke="none" />
+    <path d="M11 11.5h2v4.5l-1 1-1-1v-4.5z" fill="currentColor" stroke="none" />
   </Icon>
 );
 
 export const DecryptIcon: React.FC<IconProps> = (props) => (
   <Icon {...props} aria-label="Decrypt">
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-    <path d="M7 11V7a5 5 0 0 1 9.9-1" />
-    <circle cx="12" cy="16" r="1" />
+    {/* Shield unlocking - security meets decryption */}
+    <path d="M12 2L4 6v5c0 5.25 3.4 10.15 8 11.5 4.6-1.35 8-6.25 8-11.5V6l-8-4z" strokeWidth="2" fill="none" strokeDasharray="3 2" />
+    {/* Unlocked keyhole */}
+    <circle cx="12" cy="10" r="2" fill="none" strokeWidth="1.5" />
+    <path d="M12 12v3" strokeWidth="2" />
   </Icon>
 );
 
@@ -350,6 +374,9 @@ export const ArrowRightIcon: React.FC<IconProps> = (props) => (
 
 // Export all icons for easy access
 export const Icons = {
+  // Brand
+  DevUtils: DevUtilsIcon,
+
   // JSON tools
   Json: JsonIcon,
   Validate: ValidateIcon,
