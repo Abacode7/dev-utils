@@ -26,24 +26,34 @@ const Header: React.FC = () => {
   });
 
   return (
-    <header className="glass-strong border-b border-surface1/50 sticky top-0 z-50">
+    <header className="sticky top-0 z-50 header-premium">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-3.5 group"
           >
             <div className="relative">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-mauve to-pink flex items-center justify-center shadow-lg group-hover:shadow-glow-mauve transition-shadow duration-300">
-                <Icons.DevUtils size={18} className="text-crust" />
+              {/* Ambient glow - always visible */}
+              <div className="absolute -inset-1.5 rounded-2xl blur-lg transition-all duration-500 group-hover:blur-xl logo-glow" />
+              {/* Logo container */}
+              <div className="relative w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl logo-container">
+                <Icons.DevUtils size={20} className="text-white drop-shadow-sm" />
               </div>
-              {/* Glow effect on hover */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-mauve to-pink opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-300" />
             </div>
-            <span className="text-lg font-bold text-text tracking-tight">
-              DevUtils
-            </span>
+            {/* Brand name with gradient */}
+            <div className="flex flex-col">
+              <span
+                className="text-xl font-black tracking-tight gradient-text-animated"
+                style={{ lineHeight: 1.1 }}
+              >
+                DevUtils
+              </span>
+              <span className="text-[10px] font-semibold tracking-widest uppercase header-subtitle">
+                Developer Tools
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

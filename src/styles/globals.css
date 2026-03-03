@@ -437,6 +437,73 @@ body::after {
   background: rgba(49, 50, 68, 0.85);
 }
 
+/* Premium Header */
+.header-premium {
+  background: linear-gradient(
+    180deg,
+    rgba(239, 241, 245, 0.95) 0%,
+    rgba(230, 233, 239, 0.9) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(188, 192, 204, 0.5);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 4px 20px -8px rgba(76, 79, 105, 0.15);
+}
+
+[data-theme='dark'] .header-premium {
+  background: linear-gradient(
+    180deg,
+    rgba(30, 30, 46, 0.95) 0%,
+    rgba(24, 24, 37, 0.9) 100%
+  );
+  border-bottom: 1px solid rgba(69, 71, 90, 0.5);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 4px 20px -8px rgba(0, 0, 0, 0.4);
+}
+
+/* Logo glow effect */
+.logo-glow {
+  background: linear-gradient(135deg, #8839ef 0%, #ea76cb 50%, #1e66f5 100%);
+  opacity: 0.5;
+}
+
+.logo-glow:hover,
+.group:hover .logo-glow {
+  opacity: 0.8;
+}
+
+[data-theme='dark'] .logo-glow {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #8b5cf6 100%);
+  opacity: 0.8;
+}
+
+[data-theme='dark'] .group:hover .logo-glow {
+  opacity: 1;
+}
+
+/* Logo container */
+.logo-container {
+  background: linear-gradient(135deg, #8839ef 0%, #ea76cb 60%, #7287fd 100%);
+  box-shadow: 0 4px 20px -4px rgba(136, 57, 239, 0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+[data-theme='dark'] .logo-container {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 60%, #8b5cf6 100%);
+  box-shadow: 0 4px 24px -4px rgba(168, 85, 247, 0.6), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* Header subtitle */
+.header-subtitle {
+  color: var(--overlay1);
+}
+
+[data-theme='dark'] .header-subtitle {
+  color: var(--subtext0);
+}
+
 /* ============================================
    Gradient Text
    ============================================ */
@@ -461,6 +528,23 @@ body::after {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-shift 8s ease infinite;
+}
+
+/* Dark mode: Use more vibrant gradient colors */
+[data-theme='dark'] .gradient-text-animated {
+  background: linear-gradient(
+    135deg,
+    #f5c2e7 0%,
+    #cba6f7 25%,
+    #89b4fa 50%,
+    #94e2d5 75%,
+    #f5c2e7 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: brightness(1.1) saturate(1.2);
 }
 
 /* ============================================
