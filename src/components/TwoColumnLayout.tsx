@@ -39,7 +39,7 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
   };
 
   return (
-    <div className={`flex h-full min-h-screen bg-background-primary ${className}`}>
+    <div className={`flex h-full min-h-screen ${className}`} style={{ background: 'var(--bg-primary)' }}>
       {/* Sidebar */}
       <div
         className={`
@@ -47,20 +47,28 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
           ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
           ${sidebarWidthClasses[sidebarWidth]}
           transition-transform duration-300 ease-in-out
-          bg-surface-secondary border-r border-border-primary
-          shadow-lg lg:shadow-none
         `}
+        style={{
+          background: 'var(--bg-secondary)',
+        }}
       >
         {/* Sidebar Header */}
         {collapsible && (
-          <div className="flex items-center justify-between p-4 border-b border-border-primary">
-            <h2 className="text-lg font-semibold text-text-primary font-display">
+          <div className="flex items-center justify-between px-6 pt-6 pb-2">
+            <h2
+              className="text-sm font-semibold uppercase tracking-wider"
+              style={{ color: 'var(--text-tertiary)' }}
+            >
               Tools
             </h2>
             {isMobile && (
               <button
                 onClick={toggleSidebar}
-                className="p-2 rounded-md text-text-secondary hover:text-text-primary hover:bg-surface-primary transition-colors"
+                className="p-2 rounded-xl transition-all duration-200 hover:scale-105"
+                style={{
+                  color: 'var(--text-secondary)',
+                  background: 'var(--surface0)',
+                }}
                 aria-label="Close sidebar"
               >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,7 +88,8 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
       {/* Mobile Overlay */}
       {isMobile && isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40"
+          className="fixed inset-0 z-40"
+          style={{ background: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(4px)' }}
           onClick={toggleSidebar}
           aria-hidden="true"
         />
@@ -90,17 +99,27 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
       <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile Header with Sidebar Toggle */}
         {isMobile && collapsible && (
-          <div className="flex items-center p-4 border-b border-border-primary bg-surface-primary">
+          <div
+            className="flex items-center p-4"
+            style={{ background: 'var(--bg-primary)' }}
+          >
             <button
               onClick={toggleSidebar}
-              className="p-2 rounded-md text-text-secondary hover:text-text-primary hover:bg-surface-secondary transition-colors mr-3"
+              className="p-2 rounded-xl transition-all duration-200 hover:scale-105 mr-3"
+              style={{
+                color: 'var(--text-secondary)',
+                background: 'var(--surface0)',
+              }}
               aria-label="Open sidebar"
             >
               <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-            <h1 className="text-lg font-semibold text-text-primary font-display">
+            <h1
+              className="text-lg font-semibold"
+              style={{ color: 'var(--text-primary)' }}
+            >
               Developer Tools
             </h1>
           </div>

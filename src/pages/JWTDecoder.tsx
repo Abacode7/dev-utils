@@ -100,189 +100,313 @@ const JwtDecoder: React.FC = () => {
 
   const expiryStatus = getExpiryStatus();
 
+  // Status badge color helper
+  const getStatusBadgeStyle = (color: string) => {
+    switch (color) {
+      case 'green':
+        return {
+          background: 'color-mix(in srgb, var(--green) 15%, transparent)',
+          color: 'var(--green)',
+        };
+      case 'red':
+        return {
+          background: 'color-mix(in srgb, var(--red) 15%, transparent)',
+          color: 'var(--red)',
+        };
+      default:
+        return {
+          background: 'color-mix(in srgb, var(--yellow) 15%, transparent)',
+          color: 'var(--yellow)',
+        };
+    }
+  };
+
   return (
     <TwoColumnLayout
       sidebar={<ToolSidebar />}
       sidebarWidth="md"
     >
       <div className="h-full flex flex-col" style={{ background: 'var(--bg-primary)' }}>
-        {/* Header */}
-        <div className="border-b px-8 py-6" style={{ borderColor: 'var(--border-default)' }}>
-          <h1 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>JWT Decoder</h1>
-          <p className="mt-1 text-sm" style={{ color: 'var(--text-secondary)' }}>
+        {/* Header - Clean, no border */}
+        <div className="px-8 pt-8 pb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div
+              className="p-2 rounded-xl"
+              style={{
+                background: 'color-mix(in srgb, var(--mauve) 15%, transparent)',
+              }}
+            >
+              <Icons.Jwt size={20} style={{ color: 'var(--mauve)' }} />
+            </div>
+            <h1 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
+              JWT Decoder
+            </h1>
+          </div>
+          <p className="text-sm ml-12" style={{ color: 'var(--text-secondary)' }}>
             Decode, validate, and verify JSON Web Tokens with security analysis.
           </p>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-8">
-          <div className="max-w-5xl space-y-6">
-            {/* JWT Input */}
-            <Card size="none">
-              <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-medium">JWT Token</CardTitle>
-                  <div className="flex items-center gap-3">
-                    {decoded && expiryStatus && (
-                      <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-                        expiryStatus.color === 'green' ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400' :
-                        expiryStatus.color === 'red' ? 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400' :
-                        'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'
-                      }`}>
-                        {expiryStatus.text}
-                      </span>
-                    )}
-                    {decoded && (
-                      <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-                        {decoded.header.alg}
-                      </span>
-                    )}
-                    <FileUpload onFileContent={handleFileContent} accept=".txt,.jwt" />
-                    <Button variant="ghost" size="sm" onClick={handleClear}>
-                      Clear
-                    </Button>
-                  </div>
+        <div className="flex-1 overflow-y-auto px-8 pb-8">
+          <div className="max-w-6xl space-y-6">
+            {/* JWT Input - Premium card */}
+            <div
+              className="rounded-2xl overflow-hidden"
+              style={{
+                background: 'var(--surface0)',
+                boxShadow: 'var(--shadow-md)',
+              }}
+            >
+              <div className="px-5 py-4 flex items-center justify-between">
+                <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                  JWT Token
+                </span>
+                <div className="flex items-center gap-3">
+                  {decoded && expiryStatus && (
+                    <span
+                      className="text-xs px-3 py-1.5 rounded-full font-medium"
+                      style={getStatusBadgeStyle(expiryStatus.color)}
+                    >
+                      {expiryStatus.text}
+                    </span>
+                  )}
+                  {decoded && (
+                    <span
+                      className="text-xs px-2 py-1 rounded-lg font-mono"
+                      style={{
+                        background: 'var(--surface1)',
+                        color: 'var(--text-secondary)',
+                      }}
+                    >
+                      {decoded.header.alg}
+                    </span>
+                  )}
+                  <FileUpload onFileContent={handleFileContent} accept=".txt,.jwt" />
+                  <Button variant="ghost" size="sm" onClick={handleClear}>
+                    Clear
+                  </Button>
                 </div>
-              </CardHeader>
-              <CardContent className="p-4">
+              </div>
+              <div className="px-5 pb-5">
                 <textarea
                   value={input}
                   onChange={(e) => handleInputChange(e.target.value)}
                   placeholder="Paste your JWT token here..."
-                  className="w-full h-24 p-3 font-mono text-sm resize-none border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border-neutral-200 dark:border-neutral-700 placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
+                  className="w-full h-24 p-4 font-mono text-sm resize-none rounded-xl focus:outline-none focus:ring-2 transition-all duration-200"
+                  style={{
+                    background: 'var(--surface1)',
+                    color: 'var(--text-primary)',
+                    border: 'none',
+                  }}
                 />
                 {error && (
-                  <div className="mt-3 p-3 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-sm rounded-lg">
+                  <div
+                    className="mt-3 p-4 text-sm rounded-xl"
+                    style={{
+                      background: 'color-mix(in srgb, var(--red) 10%, transparent)',
+                      color: 'var(--red)',
+                    }}
+                  >
                     <strong>Error:</strong> {error}
                   </div>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
             {decoded && validation ? (
               <>
                 {/* Header & Payload */}
                 <div className="grid lg:grid-cols-2 gap-6">
-                  <Card size="none">
-                    <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
-                      <div className="flex items-center justify-between">
-                        <CardTitle className="text-sm font-medium">Header</CardTitle>
-                        <CopyButton text={JSON.stringify(decoded.header, null, 2)} />
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-0">
-                      <Editor
-                        height="180px"
-                        language="json"
-                        value={JSON.stringify(decoded.header, null, 2)}
-                        options={{
-                          readOnly: true,
-                          minimap: { enabled: false },
-                          scrollBeyondLastLine: false,
-                          fontSize: 13,
-                          wordWrap: 'on',
-                          automaticLayout: true,
-                          padding: { top: 12, bottom: 12 },
-                        }}
-                        theme={monacoTheme}
-                      />
-                    </CardContent>
-                  </Card>
+                  <div
+                    className="rounded-2xl overflow-hidden"
+                    style={{
+                      background: 'var(--surface0)',
+                      boxShadow: 'var(--shadow-md)',
+                    }}
+                  >
+                    <div className="px-5 py-4 flex items-center justify-between">
+                      <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                        Header
+                      </span>
+                      <CopyButton text={JSON.stringify(decoded.header, null, 2)} />
+                    </div>
+                    <Editor
+                      height="180px"
+                      language="json"
+                      value={JSON.stringify(decoded.header, null, 2)}
+                      options={{
+                        readOnly: true,
+                        minimap: { enabled: false },
+                        scrollBeyondLastLine: false,
+                        fontSize: 13,
+                        wordWrap: 'on',
+                        automaticLayout: true,
+                        padding: { top: 12, bottom: 12 },
+                      }}
+                      theme={monacoTheme}
+                    />
+                  </div>
 
-                  <Card size="none">
-                    <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
-                      <div className="flex items-center justify-between">
-                        <CardTitle className="text-sm font-medium">Payload</CardTitle>
-                        <CopyButton text={JSON.stringify(decoded.payload, null, 2)} />
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-0">
-                      <Editor
-                        height="180px"
-                        language="json"
-                        value={JSON.stringify(decoded.payload, null, 2)}
-                        options={{
-                          readOnly: true,
-                          minimap: { enabled: false },
-                          scrollBeyondLastLine: false,
-                          fontSize: 13,
-                          wordWrap: 'on',
-                          automaticLayout: true,
-                          padding: { top: 12, bottom: 12 },
-                        }}
-                        theme={monacoTheme}
-                      />
-                    </CardContent>
-                  </Card>
+                  <div
+                    className="rounded-2xl overflow-hidden"
+                    style={{
+                      background: 'var(--surface0)',
+                      boxShadow: 'var(--shadow-md)',
+                    }}
+                  >
+                    <div className="px-5 py-4 flex items-center justify-between">
+                      <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                        Payload
+                      </span>
+                      <CopyButton text={JSON.stringify(decoded.payload, null, 2)} />
+                    </div>
+                    <Editor
+                      height="180px"
+                      language="json"
+                      value={JSON.stringify(decoded.payload, null, 2)}
+                      options={{
+                        readOnly: true,
+                        minimap: { enabled: false },
+                        scrollBeyondLastLine: false,
+                        fontSize: 13,
+                        wordWrap: 'on',
+                        automaticLayout: true,
+                        padding: { top: 12, bottom: 12 },
+                      }}
+                      theme={monacoTheme}
+                    />
+                  </div>
                 </div>
 
                 {/* Token Information */}
-                <Card size="sm">
-                  <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
-                    <CardTitle className="text-sm font-medium">Token Information</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div
+                  className="rounded-2xl overflow-hidden"
+                  style={{
+                    background: 'var(--surface0)',
+                    boxShadow: 'var(--shadow-md)',
+                  }}
+                >
+                  <div className="px-5 py-4">
+                    <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                      Token Information
+                    </span>
+                  </div>
+                  <div className="px-5 pb-5">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                       {validation.issuedAt && decoded.payload.iat && (
-                        <div>
-                          <span className="text-xs font-medium uppercase" style={{ color: 'var(--text-tertiary)' }}>Issued At</span>
-                          <div className="mt-1 text-sm" style={{ color: 'var(--text-primary)' }}>{formatTime(decoded.payload.iat)}</div>
+                        <div
+                          className="p-4 rounded-xl"
+                          style={{ background: 'var(--surface1)' }}
+                        >
+                          <span className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: 'var(--overlay1)' }}>
+                            Issued At
+                          </span>
+                          <div className="mt-1 text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
+                            {formatTime(decoded.payload.iat)}
+                          </div>
                         </div>
                       )}
                       {validation.expiresAt && decoded.payload.exp && (
-                        <div>
-                          <span className="text-xs font-medium uppercase" style={{ color: 'var(--text-tertiary)' }}>Expires At</span>
-                          <div className="mt-1 text-sm" style={{ color: 'var(--text-primary)' }}>{formatTime(decoded.payload.exp)}</div>
+                        <div
+                          className="p-4 rounded-xl"
+                          style={{ background: 'var(--surface1)' }}
+                        >
+                          <span className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: 'var(--overlay1)' }}>
+                            Expires At
+                          </span>
+                          <div className="mt-1 text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
+                            {formatTime(decoded.payload.exp)}
+                          </div>
                         </div>
                       )}
                       {decoded.payload.iss && (
-                        <div>
-                          <span className="text-xs font-medium uppercase" style={{ color: 'var(--text-tertiary)' }}>Issuer</span>
-                          <div className="mt-1 text-sm" style={{ color: 'var(--text-primary)' }}>{decoded.payload.iss}</div>
+                        <div
+                          className="p-4 rounded-xl"
+                          style={{ background: 'var(--surface1)' }}
+                        >
+                          <span className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: 'var(--overlay1)' }}>
+                            Issuer
+                          </span>
+                          <div className="mt-1 text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
+                            {decoded.payload.iss}
+                          </div>
                         </div>
                       )}
                       {decoded.payload.sub && (
-                        <div>
-                          <span className="text-xs font-medium uppercase" style={{ color: 'var(--text-tertiary)' }}>Subject</span>
-                          <div className="mt-1 text-sm" style={{ color: 'var(--text-primary)' }}>{decoded.payload.sub}</div>
+                        <div
+                          className="p-4 rounded-xl"
+                          style={{ background: 'var(--surface1)' }}
+                        >
+                          <span className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: 'var(--overlay1)' }}>
+                            Subject
+                          </span>
+                          <div className="mt-1 text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
+                            {decoded.payload.sub}
+                          </div>
                         </div>
                       )}
                     </div>
 
                     {validation.errors.length > 0 && (
-                      <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/30 rounded-lg">
-                        <h4 className="font-medium text-red-800 dark:text-red-400 text-sm mb-2">Validation Errors</h4>
-                        <ul className="text-sm text-red-700 dark:text-red-400 space-y-1">
-                          {validation.errors.map((error, index) => (
-                            <li key={index}>• {error}</li>
+                      <div
+                        className="mt-4 p-4 rounded-xl"
+                        style={{
+                          background: 'color-mix(in srgb, var(--red) 10%, transparent)',
+                        }}
+                      >
+                        <h4 className="font-semibold text-sm mb-2" style={{ color: 'var(--red)' }}>
+                          Validation Errors
+                        </h4>
+                        <ul className="text-sm space-y-1" style={{ color: 'var(--red)' }}>
+                          {validation.errors.map((err, index) => (
+                            <li key={index}>• {err}</li>
                           ))}
                         </ul>
                       </div>
                     )}
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
 
                 {/* Signature Verification */}
-                <Card size="sm">
-                  <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
-                    <CardTitle className="text-sm font-medium">Signature Verification</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 space-y-4">
-                    <div className="p-3 bg-amber-50 dark:bg-amber-900/30 rounded-lg">
-                      <div className="flex items-start gap-2">
-                        <Icons.Warning size={16} className="text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
-                        <div className="text-sm text-amber-800 dark:text-amber-300">
-                          <strong>Security Warning:</strong> This verification is for educational purposes. Never enter production secrets in client-side applications.
-                        </div>
+                <div
+                  className="rounded-2xl overflow-hidden"
+                  style={{
+                    background: 'var(--surface0)',
+                    boxShadow: 'var(--shadow-md)',
+                  }}
+                >
+                  <div className="px-5 py-4">
+                    <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                      Signature Verification
+                    </span>
+                  </div>
+                  <div className="px-5 pb-5 space-y-4">
+                    <div
+                      className="p-4 rounded-xl flex items-start gap-3"
+                      style={{
+                        background: 'color-mix(in srgb, var(--yellow) 10%, transparent)',
+                      }}
+                    >
+                      <Icons.Warning size={18} style={{ color: 'var(--yellow)', marginTop: '2px', flexShrink: 0 }} />
+                      <div className="text-sm" style={{ color: 'var(--yellow)' }}>
+                        <strong>Security Warning:</strong> This verification is for educational purposes. Never enter production secrets in client-side applications.
                       </div>
                     </div>
 
                     <div className="flex items-center gap-4">
-                      <label className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Algorithm:</label>
+                      <label className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
+                        Algorithm:
+                      </label>
                       <select
                         value={algorithm}
                         onChange={(e) => setAlgorithm(e.target.value as 'HS256' | 'RS256')}
-                        className="px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 dark:border-neutral-700"
+                        className="px-3 py-2 text-sm rounded-xl focus:outline-none focus:ring-2 transition-all duration-200"
+                        style={{
+                          background: 'var(--surface1)',
+                          color: 'var(--text-primary)',
+                          border: 'none',
+                        }}
                       >
                         <option value="HS256">HS256 (HMAC + SHA256)</option>
                         <option value="RS256">RS256 (RSA + SHA256)</option>
@@ -297,7 +421,12 @@ const JwtDecoder: React.FC = () => {
                         value={verificationKey}
                         onChange={(e) => setVerificationKey(e.target.value)}
                         placeholder={algorithm === 'HS256' ? 'Enter your secret key...' : 'Enter your RSA public key in PEM format...'}
-                        className="w-full h-20 p-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border-neutral-200 dark:border-neutral-700 font-mono placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
+                        className="w-full h-24 p-4 text-sm rounded-xl focus:outline-none focus:ring-2 font-mono transition-all duration-200"
+                        style={{
+                          background: 'var(--surface1)',
+                          color: 'var(--text-primary)',
+                          border: 'none',
+                        }}
                       />
                     </div>
 
@@ -309,12 +438,16 @@ const JwtDecoder: React.FC = () => {
                     </Button>
 
                     {verificationResult && (
-                      <div className={`p-3 rounded-lg ${
-                        verificationResult.isValid
-                          ? 'bg-green-50 dark:bg-green-900/30 text-green-800 dark:text-green-400'
-                          : 'bg-red-50 dark:bg-red-900/30 text-red-800 dark:text-red-400'
-                      }`}>
-                        <div className="font-medium text-sm">
+                      <div
+                        className="p-4 rounded-xl"
+                        style={{
+                          background: verificationResult.isValid
+                            ? 'color-mix(in srgb, var(--green) 10%, transparent)'
+                            : 'color-mix(in srgb, var(--red) 10%, transparent)',
+                          color: verificationResult.isValid ? 'var(--green)' : 'var(--red)',
+                        }}
+                      >
+                        <div className="font-semibold text-sm">
                           {verificationResult.isValid ? 'Signature Valid' : 'Signature Invalid'}
                         </div>
                         {verificationResult.error && (
@@ -324,12 +457,17 @@ const JwtDecoder: React.FC = () => {
                         )}
                       </div>
                     )}
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </>
             ) : !error && (
-              <div className="text-center py-12" style={{ color: 'var(--text-tertiary)' }}>
-                <Icons.Jwt size={48} className="mx-auto mb-3 opacity-50" />
+              <div className="text-center py-16" style={{ color: 'var(--text-tertiary)' }}>
+                <div
+                  className="mx-auto mb-4 p-4 rounded-2xl w-fit"
+                  style={{ background: 'var(--surface0)' }}
+                >
+                  <Icons.Jwt size={32} style={{ color: 'var(--overlay1)' }} />
+                </div>
                 <p className="text-sm">Paste a JWT token above to decode it</p>
               </div>
             )}

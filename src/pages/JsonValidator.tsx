@@ -81,131 +81,184 @@ const JsonValidator: React.FC = () => {
       sidebarWidth="md"
     >
       <div className="h-full flex flex-col" style={{ background: 'var(--bg-primary)' }}>
-        {/* Header */}
-        <div className="border-b px-8 py-6" style={{ borderColor: 'var(--border-default)' }}>
-          <h1 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>JSON Validator</h1>
-          <p className="mt-1 text-sm" style={{ color: 'var(--text-secondary)' }}>
+        {/* Header - Clean, no border */}
+        <div className="px-8 pt-8 pb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div
+              className="p-2 rounded-xl"
+              style={{
+                background: 'color-mix(in srgb, var(--pink) 15%, transparent)',
+              }}
+            >
+              <Icons.Json size={20} style={{ color: 'var(--pink)' }} />
+            </div>
+            <h1 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
+              JSON Validator
+            </h1>
+          </div>
+          <p className="text-sm ml-12" style={{ color: 'var(--text-secondary)' }}>
             Validate, format, and beautify your JSON data with real-time feedback.
           </p>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-8">
-          <div className="max-w-5xl space-y-6">
-            {/* Controls */}
-            <Card size="sm">
-              <CardContent className="p-4">
-                <div className="flex flex-wrap items-center gap-4">
-                  <FileUpload onFileContent={handleFileContent} className="flex-shrink-0" />
-                  <URLInput onURLContent={handleFileContent} className="flex-1 min-w-[200px]" />
+        <div className="flex-1 overflow-y-auto px-8 pb-8">
+          <div className="max-w-6xl space-y-6">
+            {/* Controls - Glass morphism style */}
+            <div
+              className="rounded-2xl p-4"
+              style={{
+                background: 'var(--glass-bg)',
+                backdropFilter: 'blur(var(--glass-blur))',
+                border: '1px solid var(--glass-border)',
+              }}
+            >
+              <div className="flex flex-wrap items-center gap-4">
+                <FileUpload onFileContent={handleFileContent} className="flex-shrink-0" />
+                <URLInput onURLContent={handleFileContent} className="flex-1 min-w-[200px]" />
 
-                  <div className="flex items-center gap-2 ml-auto">
+                <div className="flex items-center gap-2 ml-auto">
+                  <select
+                    value={indentType}
+                    onChange={(e) => setIndentType(e.target.value as 'spaces' | 'tabs')}
+                    className="px-3 py-2 text-sm rounded-xl focus:outline-none focus:ring-2 transition-all duration-200"
+                    style={{
+                      background: 'var(--surface0)',
+                      color: 'var(--text-primary)',
+                      border: '1px solid var(--surface1)',
+                    }}
+                  >
+                    <option value="spaces">Spaces</option>
+                    <option value="tabs">Tabs</option>
+                  </select>
+                  {indentType === 'spaces' && (
                     <select
-                      value={indentType}
-                      onChange={(e) => setIndentType(e.target.value as 'spaces' | 'tabs')}
-                      className="px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 dark:border-neutral-700"
+                      value={indentSize}
+                      onChange={(e) => setIndentSize(Number(e.target.value))}
+                      className="px-3 py-2 text-sm rounded-xl focus:outline-none focus:ring-2 transition-all duration-200"
+                      style={{
+                        background: 'var(--surface0)',
+                        color: 'var(--text-primary)',
+                        border: '1px solid var(--surface1)',
+                      }}
                     >
-                      <option value="spaces">Spaces</option>
-                      <option value="tabs">Tabs</option>
+                      <option value={2}>2 spaces</option>
+                      <option value={4}>4 spaces</option>
                     </select>
-                    {indentType === 'spaces' && (
-                      <select
-                        value={indentSize}
-                        onChange={(e) => setIndentSize(Number(e.target.value))}
-                        className="px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 dark:border-neutral-700"
-                      >
-                        <option value={2}>2 spaces</option>
-                        <option value={4}>4 spaces</option>
-                      </select>
-                    )}
-                    <Button variant="outline" size="sm" onClick={handleMinify} disabled={!validation.isValid || !input.trim()}>
-                      Minify
-                    </Button>
-                    <Button variant="ghost" size="sm" onClick={handleClear}>
-                      Clear
-                    </Button>
-                  </div>
+                  )}
+                  <Button variant="outline" size="sm" onClick={handleMinify} disabled={!validation.isValid || !input.trim()}>
+                    Minify
+                  </Button>
+                  <Button variant="ghost" size="sm" onClick={handleClear}>
+                    Clear
+                  </Button>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            {/* Editor Grid */}
+            {/* Editor Grid - Premium card styling */}
             <div className="grid lg:grid-cols-2 gap-6">
               {/* Input Editor */}
-              <Card size="none">
-                <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-sm font-medium">Input JSON</CardTitle>
-                    <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-                      validation.isValid
-                        ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                        : 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400'
-                    }`}>
-                      {validation.isValid ? 'Valid' : 'Invalid'}
-                    </span>
+              <div
+                className="rounded-2xl overflow-hidden"
+                style={{
+                  background: 'var(--surface0)',
+                  boxShadow: 'var(--shadow-md)',
+                }}
+              >
+                <div className="px-5 py-4 flex items-center justify-between">
+                  <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                    Input JSON
+                  </span>
+                  <span
+                    className="text-xs px-3 py-1.5 rounded-full font-medium"
+                    style={{
+                      background: validation.isValid
+                        ? 'color-mix(in srgb, var(--green) 15%, transparent)'
+                        : 'color-mix(in srgb, var(--red) 15%, transparent)',
+                      color: validation.isValid ? 'var(--green)' : 'var(--red)',
+                    }}
+                  >
+                    {validation.isValid ? 'Valid' : 'Invalid'}
+                  </span>
+                </div>
+                <div className="relative">
+                  <Editor
+                    height="400px"
+                    language="json"
+                    value={input}
+                    onChange={handleInputChange}
+                    theme={monacoTheme}
+                    options={{
+                      minimap: { enabled: false },
+                      scrollBeyondLastLine: false,
+                      fontSize: 13,
+                      wordWrap: 'on',
+                      automaticLayout: true,
+                      padding: { top: 12, bottom: 12 },
+                    }}
+                  />
+                </div>
+                {!validation.isValid && (
+                  <div
+                    className="px-5 py-3 text-sm"
+                    style={{
+                      background: 'color-mix(in srgb, var(--red) 10%, transparent)',
+                      color: 'var(--red)',
+                    }}
+                  >
+                    <strong>Error:</strong> {validation.error}
                   </div>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <div className="border-b" style={{ borderColor: 'var(--border-default)' }}>
-                    <Editor
-                      height="400px"
-                      language="json"
-                      value={input}
-                      onChange={handleInputChange}
-                      theme={monacoTheme}
-                      options={{
-                        minimap: { enabled: false },
-                        scrollBeyondLastLine: false,
-                        fontSize: 13,
-                        wordWrap: 'on',
-                        automaticLayout: true,
-                        padding: { top: 12, bottom: 12 },
-                      }}
-                    />
-                  </div>
-                  {!validation.isValid && (
-                    <div className="p-3 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-sm">
-                      <strong>Error:</strong> {validation.error}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+                )}
+              </div>
 
               {/* Output Editor */}
-              <Card size="none">
-                <CardHeader className="p-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-sm font-medium">Formatted Output</CardTitle>
-                    <CopyButton text={validation.formatted || ''} />
-                  </div>
-                </CardHeader>
-                <CardContent className="p-0">
-                  {validation.formatted ? (
-                    <Editor
-                      height="400px"
-                      language="json"
-                      value={validation.formatted}
-                      options={{
-                        readOnly: true,
-                        minimap: { enabled: false },
-                        scrollBeyondLastLine: false,
-                        fontSize: 13,
-                        wordWrap: 'on',
-                        automaticLayout: true,
-                        padding: { top: 12, bottom: 12 },
-                      }}
-                      theme={monacoTheme}
-                    />
-                  ) : (
-                    <div className="h-[400px] flex items-center justify-center" style={{ color: 'var(--text-tertiary)' }}>
-                      <div className="text-center">
-                        <Icons.Json size={32} className="mx-auto mb-2 opacity-50" />
-                        <p className="text-sm">Enter valid JSON to see formatted output</p>
+              <div
+                className="rounded-2xl overflow-hidden"
+                style={{
+                  background: 'var(--surface0)',
+                  boxShadow: 'var(--shadow-md)',
+                }}
+              >
+                <div className="px-5 py-4 flex items-center justify-between">
+                  <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                    Formatted Output
+                  </span>
+                  <CopyButton text={validation.formatted || ''} />
+                </div>
+                {validation.formatted ? (
+                  <Editor
+                    height="400px"
+                    language="json"
+                    value={validation.formatted}
+                    options={{
+                      readOnly: true,
+                      minimap: { enabled: false },
+                      scrollBeyondLastLine: false,
+                      fontSize: 13,
+                      wordWrap: 'on',
+                      automaticLayout: true,
+                      padding: { top: 12, bottom: 12 },
+                    }}
+                    theme={monacoTheme}
+                  />
+                ) : (
+                  <div
+                    className="h-[400px] flex items-center justify-center"
+                    style={{ color: 'var(--text-tertiary)' }}
+                  >
+                    <div className="text-center">
+                      <div
+                        className="mx-auto mb-3 p-3 rounded-2xl w-fit"
+                        style={{ background: 'var(--surface1)' }}
+                      >
+                        <Icons.Json size={24} style={{ color: 'var(--overlay1)' }} />
                       </div>
+                      <p className="text-sm">Enter valid JSON to see formatted output</p>
                     </div>
-                  )}
-                </CardContent>
-              </Card>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
