@@ -84,7 +84,7 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
               >
                 {category}
               </h3>
-              <div className="space-y-1">
+              <div className="space-y-2">
                 {categoryTools.map((tool) => {
                   const IconComponent = tool.icon;
                   const isActive = location.pathname === tool.path;
@@ -94,7 +94,7 @@ const ToolSidebar: React.FC<ToolSidebarProps> = ({
                     <Link
                       key={tool.path}
                       to={tool.path}
-                      className="flex items-center space-x-3 px-3 py-2.5 rounded-xl transition-all duration-200 group relative"
+                      className="flex items-center space-x-3 px-3 py-3 rounded-xl transition-all duration-200 group relative"
                       style={{
                         background: isActive ? 'var(--surface0)' : 'transparent',
                         color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
